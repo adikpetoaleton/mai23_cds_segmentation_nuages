@@ -3,3 +3,6 @@ sklearn
 seaborn
 random
 io
+cv2
+numpy
+pandas
