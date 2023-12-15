@@ -1,4 +1,4 @@
 matplotlib
 scikit-learn
 seaborn
-openCV
+cv2
