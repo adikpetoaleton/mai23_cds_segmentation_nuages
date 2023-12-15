@@ -184,7 +184,7 @@ if st.session_state['iscleaned']:
 if st.session_state['iscleaned']:
 
     st.markdown("### 4. Visualisation des images")
-    display_info("Un échantllon aléatoire de 9 images est affiché avec une mise en évidence la segmentation.")
+    display_info("Un échantillon aléatoire de 9 images est affiché avec une mise en évidence de la segmentation.")
     
     if st.button("Afficher"):
 
