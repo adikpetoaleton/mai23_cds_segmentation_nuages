@@ -196,7 +196,7 @@ if st.session_state['iscleaned']:
             image_path = 'images/'
 
             #ImageIds = random.sample(df_2['ImageId'].unique().tolist(), 9)
-            ImageIds = ['c1a3d8e_1', 'e69a0b2_1']
+            ImageIds = ['0011165_1','002be4f_3','003994e_3','0091591_2','00b81e1_3','0100a84_2','011ba04_1','015b764_3','017ded1_3']
 
             fig, axes = plt.subplots(3, 3, figsize=(20, 15), layout='constrained')
             for axe, img_id in zip(axes.flat, ImageIds):
