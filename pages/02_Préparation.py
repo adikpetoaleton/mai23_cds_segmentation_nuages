@@ -14,12 +14,12 @@ st.set_page_config(
 
 @st.cache_data
 def load_data():
-    data = pd.read_csv('clouds_1_large.csv')
+    data = pd.read_csv('clouds_cleaned_sample.csv')
     return data
 
 @st.cache_data
 def load_data_2():
-    data = pd.read_csv('clouds_2.csv')
+    data = pd.read_csv('clouds_enriched_sample.csv')
     return data
 
 # Initialisation des variables de session
