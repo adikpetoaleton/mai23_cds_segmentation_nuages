@@ -42,9 +42,9 @@ if 'dataframe_2' in st.session_state:
         st.session_state['dataframe_2'] = load_data()
     df = st.session_state['dataframe_2']
 
-#################################
-# Aperçu du jeu de données brut #
-#################################
+###################################
+# Aperçu du jeu de données brut 2 #
+###################################
 
 st.markdown("### 1. Aperçu du jeu de données brut")
 st.dataframe(df.head())
