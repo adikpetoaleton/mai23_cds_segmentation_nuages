@@ -19,7 +19,7 @@ def load_data():
 
 @st.cache_data
 def load_data_1():
-    data = pd.read_csv('clouds_initial_sample.csv')
+    data = pd.read_csv('clouds_cleaned_sample.csv')
     return data
 
 # Initialisation des variables de session
