@@ -177,7 +177,6 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     ax.set_title(imageid)
     
-    st.write("coucou")
     #ax.imshow(img)
 
     if show_mask:
