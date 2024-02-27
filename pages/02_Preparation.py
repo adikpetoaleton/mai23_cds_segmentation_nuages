@@ -69,7 +69,7 @@ with tab_a1:
         with st.spinner("Veuillez patienter"):
 
             ImageIds = ['24884e7_0', '3b9a092_0', '5265e81_0', '400a38d_0', '17fe76e_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0', '076de5e_0']
-            showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=False)
+            showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, './images/', hide_axis=True, show_mask=False)
 
 # Filtrage des observations masquées
 with tab_a2:
