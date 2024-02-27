@@ -57,13 +57,14 @@ if st.session_state.dataframe_1 is None:
 #################################
 
 st.markdown("### 1. Aperçu du jeu de données brut")
-display_info(
-    "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
-    Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
-    image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE)."
-)
 
 st.dataframe(dataframe_1.head(10))
+
+    st.info(
+        "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
+        Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
+        image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).", icon="ℹ️"
+    )
 
 # Informations sur le dataset
 if st.checkbox("Afficher les informations", key='info_1'):
@@ -72,7 +73,6 @@ if st.checkbox("Afficher les informations", key='info_1'):
     info_output = info_buffer.getvalue()
     st.text(info_output)
 
-    st.markdown("##### Commentaires")
     st.info(
         "Nous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
         Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
