@@ -269,7 +269,7 @@ if isCharger:
             
             exp1 = st.expander("Visualiser des images multi-classes")
             with exp1:
-                ImageIds = random.sample(sample['ImageId'].unique().tolist(), 9)
+                ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 9)
                 showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
 
