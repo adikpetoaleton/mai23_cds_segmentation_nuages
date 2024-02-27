@@ -245,29 +245,28 @@ if isCharger:
     # Visualisation des images #
     ############################
 
-    st.markdown("### 4. Visualisation des images")
+    # st.markdown("### 4. Visualisation des images")
 
-    if st.checkbox("Afficher", key='xxx'):
-        with st.spinner("Veuillez patienter"):
-            exp1 = st.expander("Visualiser des images multi-classes")
-            with exp1:
-                #ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-                ImageIds = ['0011165_0', '0011165_0', '0011165_0']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
+    # if st.checkbox("Afficher", key='xxx'):
+    #     with st.spinner("Veuillez patienter"):
+    #         exp1 = st.expander("Visualiser des images multi-classes")
+    #         with exp1:
+    #             ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
+    #             showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
 
-            # exp2 = st.expander("Visualiser des images decrites par des segments compactes")
-            # with exp2:
-            #     ImageIds = ['c22cfa7_3', 'f128b90_1', '6906aa0_3']
-            #     showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
+    #         exp2 = st.expander("Visualiser des images decrites par des segments compactes")
+    #         with exp2:
+    #             ImageIds = ['c22cfa7_3', 'f128b90_1', '6906aa0_3']
+    #             showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
 
-            # exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
-            # with exp3:
-            #     ImageIds = ['db36366_2', '5717e63_3', '4a7b6e3_3', '37e8349_0', 'ae7a06d_3', 'c465c2e_3']
-            #     showImages(ImageIds, 2, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
+    #         exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
+    #         with exp3:
+    #             ImageIds = ['db36366_2', '5717e63_3', '4a7b6e3_3', '37e8349_0', 'ae7a06d_3', 'c465c2e_3']
+    #             showImages(ImageIds, 2, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
 
-            # exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
-            # with exp4:
-            #     ImageIds = ['24884e7_0', 'f32724b_0', '3b9a092_0', '5265e81_0', '400a38d_0', 'a2dc5c0_0', '17fe76e_0', '838cd7a_0', 'fd5aa5d_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0']
-            #     showImages(ImageIds, 3, 4, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=False)
+    #         exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
+    #         with exp4:
+    #             ImageIds = ['24884e7_0', 'f32724b_0', '3b9a092_0', '5265e81_0', '400a38d_0', 'a2dc5c0_0', '17fe76e_0', '838cd7a_0', 'fd5aa5d_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0']
+    #             showImages(ImageIds, 3, 4, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=False)
 
 
