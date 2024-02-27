@@ -177,7 +177,7 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     ax.set_title(imageid)
     
-    img /= 255
+    img = img/255
     ax.imshow(img)
 
     if show_mask:
