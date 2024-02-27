@@ -48,11 +48,6 @@ if st.checkbox("Afficher les informations", key='info_1'):
     info_output = info_buffer.getvalue()
     st.text(info_output)
 
-    st.markdown("##### Commentaires")
-    display_info(
-        "To be defined"
-    )
-
 ##############################
 # Filtrage des observations  #
 ##############################
@@ -108,7 +103,7 @@ st.info(
     d'une zone traversée par une barre noire.", icon="ℹ️"
 )
 
-if st.checkbox("Filtrer", key='info_3'):
+if st.checkbox("Filtrer les observations", key='info_3'):
 
     GAP_LIMIT_LOW = 0
     GAP_LIMIT_HIGH = 0.09
@@ -127,9 +122,10 @@ if st.checkbox("Filtrer", key='info_3'):
 # Visualisation des bounding Box #
 ##################################
 
-st.markdown("### 4. Visualisation des bounding Box")
+st.markdown("### 4. Visualisation des Bounding Box")
 
 if st.button('Afficher / Rafraîchir'):
+
     with st.spinner("Veuillez patienter"):
         ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 3)
         showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=False, show_mask=True)
@@ -143,109 +139,7 @@ if st.button('Afficher / Rafraîchir'):
             displayBoundingBox(img_id, axe, x, y, w, h)
         st.pyplot(fig)
 
-
-# ##############################
-# # Affichage des statistiques #
-# ##############################
-
-# # Stats n°1
-# st.markdown("##### Résumé des statistiques (describe)")
-# st.dataframe(dataframe_2.describe())
-
-# # Stats n°2
-# st.markdown("##### Autres statistiques")
-# tab_b1, tab_b2 = st.tabs(['Distribution des classes de nuage', 'Distribution selon le nombre de classes qui les caractérisent'])
-
-# with tab_b1:
-
-#     col_b11, col_b12 = st.columns([1, 2], gap='small')
-    
-#     with col_b11:
-#         st.dataframe(dist1)
-
-#     with col_b12:
-#         fig2, ax2 = plt.subplots()
-#         ax2.pie(
-#             x = dist1['proportion'], 
-#             labels = dist1['Ratio'],
-#             autopct = lambda x: str(round(x, 2)) + '%',
-#             pctdistance = 0.7, 
-#             labeldistance = 1.1,
-#             shadow = False,
-#             textprops = {'fontsize': 8}
-#         )
-#         st.pyplot(fig2)
-
-# with tab_b2:
-#     col_b21, col_b22 = st.columns([1, 2], gap='small')
-#     with col_b21:
-#         st.dataframe(dist2)
-#     with col_b22:
-#         fig1, ax1 = plt.subplots()
-#         sns.set_theme()
-#         sns.barplot(x='Occurence', y='count', data=dist2)
-#         st.pyplot(fig1)
-
-# # Stats n°3
-# st.markdown("##### Distribution de l'étendu des nuages par classe de nuage")
-
-# g = sns.FacetGrid(dataframe_2, col='Label', height=4)
-# g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
-# st.pyplot(plt)
-
-# display_info("Commentaires ici...")
-
-# # Stats n°4
-# st.markdown("##### Quelques distributions...")
-
-# exp1 = st.expander("Distribution du taux de couverture des nuages (par rapport à l'image entière) par classe de nuage", expanded=True)
-# with exp1:
-#     sns.set(style='whitegrid')
-#     fig3, ax3 = plt.subplots(figsize=(8, 6))
-#     sns.boxplot(x='Label', y='CloudRatio', data=dataframe_2, width=0.5)
-#     sns.despine(left=True)
-#     st.pyplot(fig3)
-
-# exp2 = st.expander("Distribution de la moyenne des niveaux de pixel d'une zone nuageuse par classe de nuage")
-# with exp2:
-#     sns.set(style='whitegrid')
-#     fig4, ax4 = plt.subplots(figsize=(8, 6))
-#     sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_2, width=0.5)
-#     sns.despine(left=True)
-#     st.pyplot(fig4)
-
-# exp3 = st.expander("Distribution de l'écart-type des niveaux de pixel d'une zone nuageuse par classe de nuage")
-# with exp3:
-#     sns.set(style='whitegrid')
-#     fig5, ax5 = plt.subplots(figsize=(8, 6))
-#     sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
-#     sns.despine(left=True)
-#     st.pyplot(fig5)
-
-# ############################
-# # Visualisation des images #
-# ############################
-
-# st.markdown("### 4. Visualisation des images")
-
-# if st.checkbox("Afficher", key='xxx'):
-#     with st.spinner("Veuillez patienter"):
-#         exp1 = st.expander("Visualiser des images multi-classes")
-#         with exp1:
-#             ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-#             showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
-
-#         exp2 = st.expander("Visualiser des images decrites par des segments compactes")
-#         with exp2:
-#             ImageIds = ['c22cfa7_3', 'f128b90_1', '6906aa0_3']
-#             showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
-
-#         exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
-#         with exp3:
-#             ImageIds = ['db36366_2', '5717e63_3', '4a7b6e3_3', '37e8349_0', 'ae7a06d_3', 'c465c2e_3']
-#             showImages(ImageIds, 2, 3, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=True)
-
-#         exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
-#         with exp4:
-#             ImageIds = ['24884e7_0', 'f32724b_0', '3b9a092_0', '5265e81_0', '400a38d_0', 'a2dc5c0_0', '17fe76e_0', '838cd7a_0', 'fd5aa5d_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0']
-#             showImages(ImageIds, 3, 4, dataframe_2, 2100, 1400, '../images/', hide_axis=True, show_mask=False)
+    st.info(
+        "Sur la rangée supérieure, nous observons un échantillon aléatoire d'images à leur taille d'origine sur laquelle nous superposons le segment de nuage, \
+        alors que la rangée inférieure représente ces mêmes images mais réduites de moitié, et sur les quelles nous superposons une Bounding Box en vue de la phase de segmentation.", icon="ℹ️"
+    )
