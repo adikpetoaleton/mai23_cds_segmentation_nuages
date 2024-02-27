@@ -74,7 +74,7 @@ with tab_a1:
 # Filtrage des observations masquées
 with tab_a2:
     dataframe_2 = dataframe_2[dataframe_2['FileId'].apply(lambda x: all(exclude not in x for exclude in df_hidden['FileId'].tolist()))]
-    st.dataframe(dataframe_2)
+    st.dataframe(dataframe_2.head(10))
 
     # Informations sur le jeu de données
     if st.checkbox("Afficher les informations", key='info_2'):
@@ -82,11 +82,6 @@ with tab_a2:
         dataframe_2.info(buf=info_buffer)
         info_output = info_buffer.getvalue()
         st.text(info_output)
-
-        st.markdown("##### Commentaires")
-        display_info(
-            "To be defined"
-        )
 
 st.info(
     "Le jeu de données contient une dizaine d'images abérrantes dans ce sens que la barre noire occupe plus de 20% de l'ensemble de l'image. \
