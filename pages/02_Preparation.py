@@ -127,14 +127,14 @@ if st.button('Afficher / Rafraîchir'):
         ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 3)
         showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=False, show_mask=True)
 
-        # fig, axes = plt.subplots(1, 3, figsize=(15, 20), layout='constrained')
-        # for axe, img_id in zip(axes.flat, ImageIds):
-        #     x = dataframe_2[dataframe_2['ImageId'] == img_id].X
-        #     y = dataframe_2[dataframe_2['ImageId'] == img_id].Y
-        #     w = dataframe_2[dataframe_2['ImageId'] == img_id].W
-        #     h = dataframe_2[dataframe_2['ImageId'] == img_id].H
-        #     displayBoundingBox(img_id, axe, x, y, w, h)
-        # st.pyplot(fig)
+        fig, axes = plt.subplots(1, 3, figsize=(15, 20), layout='constrained')
+        for axe, img_id in zip(axes.flat, ImageIds):
+            x = dataframe_2[dataframe_2['ImageId'] == img_id].X
+            y = dataframe_2[dataframe_2['ImageId'] == img_id].Y
+            w = dataframe_2[dataframe_2['ImageId'] == img_id].W
+            h = dataframe_2[dataframe_2['ImageId'] == img_id].H
+            displayBoundingBox(img_id, axe, x, y, w, h)
+        st.pyplot(fig)
 
 
 # ##############################
