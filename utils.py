@@ -197,8 +197,8 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     ax.set_title(imageid)
     
-    img_float = img.astype(np.float32) / 255.0
-    ax.imshow(img_float)
+    #ax.imshow(img)
+    cv2.imshow('Loaded Image', img)
 
     if show_mask:
         ax.imshow(all_masks, cmap=cmap, alpha=alpha)
