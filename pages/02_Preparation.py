@@ -94,15 +94,18 @@ with tab_a2:
         )
 
 st.info(
-    "Le jeu contient une dizaine d'images abérrante dans ce sens que la barre noire occupe plus de 20% de l'ensemble de l'image.", icon="ℹ️"
+    "Le jeu de données contient une dizaine d'images abérrantes dans ce sens que la barre noire occupe plus de 20% de l'ensemble de l'image. \
+    Il s'agit ici d'un seuil arbitraire qui n'impacte pas du tout le volume de données.", icon="ℹ️"
 )
 
 # Filtrage des observations avec segments disjoints
 
 st.markdown("### 3. Filtrage des observations avec segments disjoints")
-display_info(
+st.info(
     "En appliquant ce filtre, nous retirons du jeu de données l'ensemble des observations \
-    pour lesquelles les segments de zone nuageuse ne délimitent pas une étendue continue."
+    pour lesquelles les segments de zone nuageuse ne délimitent pas une étendue continue.\
+    Il peut s'agir de véritable zone nuageuse disjointe et de même catégorie ou alors \
+    d'une zone traversée par une barre noire.", icon="ℹ️"
 )
 
 if st.checkbox("Filtrer", key='info_3'):
