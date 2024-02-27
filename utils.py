@@ -188,7 +188,8 @@ def showImages(ImageIds, grid_x, grid_y, df, img_width, img_height, image_path, 
     fig, axes = plt.subplots(grid_x, grid_y, figsize=(20, 10), layout='constrained')
     for axe, img_id in zip(axes.flat, ImageIds):
         displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
-    st.pyplot(fig)
+    #st.pyplot(fig)
+    plt.show()
 
     
 
