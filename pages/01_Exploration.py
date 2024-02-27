@@ -259,7 +259,7 @@ if isCharger:
 
             exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
             with exp3:
-                ImageIds = ['1955970_3', '4a7b6e3_3', '37e8349_0']
+                ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
             # exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
