@@ -148,7 +148,7 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     img_id = imageid.split('_')[0]
     
-    # img = cv2.imread(image_path + img_id + '.jpg')
+    img = cv2.imread(image_path + img_id + '.jpg')
 
     # if show_mask:
     #     # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
