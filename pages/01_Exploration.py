@@ -79,6 +79,12 @@ if st.checkbox("Afficher les informations", key='info_1'):
         l'aide de variables explicatives supplémentaires."
     )
 
+    st.info(
+        "Nous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
+        Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
+        l'aide de variables explicatives supplémentaires."
+    )
+
 #########################
 # Nettoyage des données #
 #########################
