@@ -26,7 +26,7 @@ else:
     dataframe_2 = st.session_state.dataframe_2
 
 st.title("Préparation des données en vue de la segmentation")
-display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
+display_info("Cette phase consiste à retirer les abérrations du jeu de données en vue de la segmentation des images.")
 
 ####################################
 # Aperçu du jeu de données enrichi #
@@ -92,6 +92,10 @@ with tab_a2:
         display_info(
             "To be defined"
         )
+
+st.info(
+    "Le jeu contient une dizaine d'images abérrante dans ce sens que la barre noire occupe plus de 20% de l'ensemble de l'image.", icon="ℹ️"
+)
 
 # Filtrage des observations avec segments disjoints
 
