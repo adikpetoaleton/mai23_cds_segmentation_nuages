@@ -254,13 +254,13 @@ if isCharger:
 
             exp2 = st.expander("Visualiser des images decrites par des segments compactes")
             with exp2:
-                ImageIds = ['c22cfa7_3', 'f128b90_1', '6906aa0_3']
+                ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
-            # exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
-            # with exp3:
-            #     ImageIds = ['db36366_2', '5717e63_3', '4a7b6e3_3', '37e8349_0', 'ae7a06d_3', 'c465c2e_3']
-            #     showImages(ImageIds, 2, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+            exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
+            with exp3:
+                ImageIds = ['db36366_2', '5717e63_3', '4a7b6e3_3', '37e8349_0', 'ae7a06d_3', 'c465c2e_3']
+                showImages(ImageIds, 2, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
             # exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
             # with exp4:
