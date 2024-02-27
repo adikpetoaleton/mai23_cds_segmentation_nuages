@@ -177,9 +177,7 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     # ax.set_title(imageid)
     
-    #ax.imshow(img)
-    ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    
+    ax.imshow(img)
 
     # if show_mask:
     #     ax.imshow(all_masks, cmap=cmap, alpha=alpha)
