@@ -71,7 +71,7 @@ if st.checkbox("Afficher les informations", key='info_1'):
         "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
         Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
         image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).\
-        \nNous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
+        \n\nNous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
         Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
         l'aide de variables explicatives supplémentaires.", icon="ℹ️"
     )
