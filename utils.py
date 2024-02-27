@@ -154,85 +154,42 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     img = cv2.imread(image_path + img_id + '.jpg')
 
-    # debug
-    return img
-    # debug
-
-    # if show_mask:
-    #     # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
-    #     masks_filtered_byId = masks[masks['ImageId']==imageid]
-    #     img_masks = masks_filtered_byId['EncodedPixels'].tolist()
-    #     img_masks_labels = masks_filtered_byId['Label'].tolist()
+    if show_mask:
+        # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
+        masks_filtered_byId = masks[masks['ImageId']==imageid]
+        img_masks = masks_filtered_byId['EncodedPixels'].tolist()
+        img_masks_labels = masks_filtered_byId['Label'].tolist()
     
-    #     # Convert RLE encoded masks into a binary encoded grids
-    #     all_masks = np.zeros((h, w))
-    #     one_mask = np.zeros((h, w))
-    #     mask_origines = []
-    #     for rle_mask in img_masks:
-    #         one_mask = rle_to_mask(rle_mask, w, h)
-    #         mask_origines.append(get_mask_origine(one_mask))
-    #         all_masks += one_mask
+        # Convert RLE encoded masks into a binary encoded grids
+        all_masks = np.zeros((h, w))
+        one_mask = np.zeros((h, w))
+        mask_origines = []
+        for rle_mask in img_masks:
+            one_mask = rle_to_mask(rle_mask, w, h)
+            mask_origines.append(get_mask_origine(one_mask))
+            all_masks += one_mask
 
-    # # Displays images and related masks
-    # if hide_axis:
-    #     ax.axis('off')
+    # Displays images and related masks
+    if hide_axis:
+        ax.axis('off')
 
-    # if show_mask:
-    #     # Displays images and related masks
-    #     for origine, label in zip(mask_origines, img_masks_labels):
-    #         ax.annotate(text=label + " 0", xy=origine[0], xytext=(20, -40), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow'))
-    #         ax.annotate(text=label + " 1", xy=origine[1], xytext=(-100, 20), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow')) 
+    if show_mask:
+        # Displays images and related masks
+        for origine, label in zip(mask_origines, img_masks_labels):
+            ax.annotate(text=label + " 0", xy=origine[0], xytext=(20, -40), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow'))
+            ax.annotate(text=label + " 1", xy=origine[1], xytext=(-100, 20), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow')) 
 
-    # ax.set_title(imageid)
+    ax.set_title(imageid)
     
-    # ax.imshow(img)
+    ax.imshow(img)
 
-    # if show_mask:
-    #     ax.imshow(all_masks, cmap=cmap, alpha=alpha)
+    if show_mask:
+        ax.imshow(all_masks, cmap=cmap, alpha=alpha)
 
     
-
-
-
 def showImages(ImageIds, grid_x, grid_y, df, img_width, img_height, image_path, hide_axis=True, show_mask=False):
     fig, axes = plt.subplots(grid_x, grid_y, figsize=(20, 10), layout='constrained')
     for axe, img_id in zip(axes.flat, ImageIds):
-        #displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
-        
-        # debug
-        img = displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
-        st.write(img)
-        # debug
-        
+        displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
     st.pyplot(fig)
 
-
-# debug
-def read_image_from_github(github_repo_url, image_path_in_repo):
-    try:
-        # Construct the raw GitHub URL for the image
-        raw_url = f"{github_repo_url}/raw/main/{image_path_in_repo}"
-
-        # Fetch the image using requests
-        response = requests.get(raw_url)
-        
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            
-            # Read the image using OpenCV from the bytes content
-
-            img_data = BytesIO(response.content)
-            img = cv2.imdecode(np.frombuffer(img_data.read(), np.uint8), cv2.IMREAD_COLOR)
-
-            # Check if the image is loaded successfully
-            if img is not None:
-                return img
-            else:
-                print("Error: Unable to load the image.")
-                return "None 1"
-        else:
-            print(f"Error: Unable to fetch the image. Status code: {response.status_code}")
-            return "None 2"
-    except Exception as e:
-        print(f"Error: {e}")
-        return "None 3"
