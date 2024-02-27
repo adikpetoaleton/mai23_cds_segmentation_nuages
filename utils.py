@@ -160,7 +160,7 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     img = read_image_from_github(github_repo_url, image_path_in_repo)
 
-    return image_path_in_repo
+    return img
     # debug
 
     # if show_mask:
