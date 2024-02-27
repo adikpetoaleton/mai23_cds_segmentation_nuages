@@ -152,14 +152,9 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     img_id = imageid.split('_')[0]
 
-    #img = cv2.imread(image_path + img_id + '.jpg')
+    img = cv2.imread(image_path + img_id + '.jpg')
 
     # debug
-    github_repo_url = "https://github.com/adikpetoaleton/mai23_cds_segmentation_nuages.git"
-    image_path_in_repo = "images/" + img_id + '.jpg'
-
-    img = read_image_from_github(github_repo_url, image_path_in_repo)
-
     return img
     # debug
 
