@@ -4,6 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
+# debug
+import requests
+from io import BytesIO
+
 # Convert RLE string to a numpy array
 def rle_to_mask(rle_string, width, height):
    
@@ -148,7 +152,23 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     img_id = imageid.split('_')[0]
     
-    img = cv2.imread(image_path + img_id + '.jpg')
+    # debug
+    #img = cv2.imread(image_path + img_id + '.jpg')
+    github_repo_url = "https://github.com/adikpetoaleton/mai23_cds_segmentation_nuages.git"
+    image_path_in_repo = "images/" + img_id + '.jpg'
+
+    img = read_image_from_github(github_repo_url, image_path_in_repo)
+
+    # if img is not None:
+    #     # Now 'image' contains the loaded image, and you can perform further processing.
+    #     cv2.imshow('Loaded Image', image)
+    #     cv2.waitKey(0)
+    #     cv2.destroyAllWindows()
+    # debug
+
+
+
+
 
     if show_mask:
         # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
@@ -177,8 +197,7 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     ax.set_title(imageid)
     
-    st.write(image_path + img_id + '.jpg')
-    #ax.imshow(img)
+    ax.imshow(img)
 
     if show_mask:
         ax.imshow(all_masks, cmap=cmap, alpha=alpha)
@@ -189,5 +208,31 @@ def showImages(ImageIds, grid_x, grid_y, df, img_width, img_height, image_path, 
         displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
     st.pyplot(fig)
 
-    
 
+# debug
+def read_image_from_github(github_repo_url, image_path_in_repo):
+    try:
+        # Construct the raw GitHub URL for the image
+        raw_url = f"{github_repo_url}/raw/main/{image_path_in_repo}"
+
+        # Fetch the image using requests
+        response = requests.get(raw_url)
+        
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Read the image using OpenCV from the bytes content
+            img_data = BytesIO(response.content)
+            img = cv2.imdecode(np.frombuffer(img_data.read(), np.uint8), cv2.IMREAD_COLOR)
+
+            # Check if the image is loaded successfully
+            if img is not None:
+                return img
+            else:
+                print("Error: Unable to load the image.")
+                return None
+        else:
+            print(f"Error: Unable to fetch the image. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
