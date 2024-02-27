@@ -60,11 +60,11 @@ st.markdown("### 1. Aperçu du jeu de données brut")
 
 st.dataframe(dataframe_1.head(10))
 
-    st.info(
-        "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
-        Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
-        image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).", icon="ℹ️"
-    )
+st.info(
+    "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
+    Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
+    image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).", icon="ℹ️"
+)
 
 # Informations sur le dataset
 if st.checkbox("Afficher les informations", key='info_1'):
