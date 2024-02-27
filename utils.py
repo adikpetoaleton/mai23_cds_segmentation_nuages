@@ -181,7 +181,8 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
 
     ax.set_title(imageid)
     
-    ax.imshow(img)
+    st.write(img)
+    #ax.imshow(img)
 
     if show_mask:
         ax.imshow(all_masks, cmap=cmap, alpha=alpha)
