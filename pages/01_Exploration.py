@@ -254,7 +254,7 @@ if isCharger:
                 ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
                 
                 #ImageIds = ['0a20edf_0', '0a20edf_0', '00a20edf_0']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=True, show_mask=False)
+                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=True, show_mask=True)
 
             # exp2 = st.expander("Visualiser des images decrites par des segments compactes")
             # with exp2:
