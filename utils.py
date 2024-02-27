@@ -223,7 +223,9 @@ def read_image_from_github(github_repo_url, image_path_in_repo):
         
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
+            
             # Read the image using OpenCV from the bytes content
+
             img_data = BytesIO(response.content)
             img = cv2.imdecode(np.frombuffer(img_data.read(), np.uint8), cv2.IMREAD_COLOR)
 
@@ -232,10 +234,10 @@ def read_image_from_github(github_repo_url, image_path_in_repo):
                 return img
             else:
                 print("Error: Unable to load the image.")
-                return None
+                return "None 1"
         else:
             print(f"Error: Unable to fetch the image. Status code: {response.status_code}")
-            return None
+            return "None 2"
     except Exception as e:
         print(f"Error: {e}")
-        return None
+        return "None 3"
