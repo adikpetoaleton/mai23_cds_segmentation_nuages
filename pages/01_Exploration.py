@@ -246,26 +246,28 @@ if isCharger:
     IMG_PATH = 'images/'
     
     if st.checkbox("Afficher", key='xxx'):
+
         with st.spinner("Veuillez patienter"):
-            # exp1 = st.expander("Visualiser des images multi-classes")
-            # with exp1:
-            #     ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-            #     showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+            
+            exp1 = st.expander("Visualiser des images multi-classes")
+            with exp1:
+                ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
+                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
-            # exp2 = st.expander("Visualiser des images decrites par des segments compactes")
-            # with exp2:
-            #     ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
-            #     showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+            exp2 = st.expander("Visualiser des images decrites par des segments compactes")
+            with exp2:
+                ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
+                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
-            # exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
-            # with exp3:
-            #     ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
-            #     showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+            exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
+            with exp3:
+                ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
+                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
             exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
             with exp4:
-                ImageIds = ['24884e7_0', 'f32724b_0', '3b9a092_0', '5265e81_0', '400a38d_0', 'a2dc5c0_0', '17fe76e_0', '838cd7a_0', 'fd5aa5d_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0']
-                showImages(ImageIds, 3, 4, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
+                ImageIds = ['f32724b_0', '17fe76e_0', '06e5dd6_0']
+                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
             
             # exp1 = st.expander("Visualiser des images multi-classes")
             # with exp1:
