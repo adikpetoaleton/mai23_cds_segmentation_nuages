@@ -151,20 +151,20 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
     alpha = 0.2
 
     img_id = imageid.split('_')[0]
-    
-    # debug
-    #img = cv2.imread(image_path + img_id + '.jpg')
-    github_repo_url = "https://github.com/adikpetoaleton/mai23_cds_segmentation_nuages.git"
-    image_path_in_repo = "images/" + img_id + '.jpg'
+    img = cv2.imread(image_path + img_id + '.jpg')
 
-    img = read_image_from_github(github_repo_url, image_path_in_repo)
+    # # debug
+    # github_repo_url = "https://github.com/adikpetoaleton/mai23_cds_segmentation_nuages.git"
+    # image_path_in_repo = "images/" + img_id + '.jpg'
 
-    # if img is not None:
-    #     # Now 'image' contains the loaded image, and you can perform further processing.
-    #     cv2.imshow('Loaded Image', image)
-    #     cv2.waitKey(0)
-    #     cv2.destroyAllWindows()
-    # debugv
+    # img = read_image_from_github(github_repo_url, image_path_in_repo)
+
+    # # if img is not None:
+    # #     # Now 'image' contains the loaded image, and you can perform further processing.
+    # #     cv2.imshow('Loaded Image', image)
+    # #     cv2.waitKey(0)
+    # #     cv2.destroyAllWindows()
+    # # debugv
 
 
 
@@ -198,7 +198,6 @@ def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask
     ax.set_title(imageid)
     
     #ax.imshow(img)
-    cv2.imshow('Loaded Image', img)
 
     if show_mask:
         ax.imshow(all_masks, cmap=cmap, alpha=alpha)
