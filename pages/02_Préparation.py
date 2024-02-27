@@ -14,12 +14,12 @@ st.set_page_config(
 
 @st.cache_data
 def load_data():
-    data = pd.read_csv('clouds_cleaned_sample.csv')
+    data = pd.read_csv('clouds_1_large.csv')
     return data
 
 @st.cache_data
 def load_data_2():
-    data = pd.read_csv('clouds_enriched_sample.csv')
+    data = pd.read_csv('clouds_2.csv')
     return data
 
 # Initialisation des variables de session
@@ -42,9 +42,9 @@ if 'dataframe_2' in st.session_state:
         st.session_state['dataframe_2'] = load_data()
     df = st.session_state['dataframe_2']
 
-###################################
-# Aperçu du jeu de données brut 2 #
-###################################
+#################################
+# Aperçu du jeu de données brut #
+#################################
 
 st.markdown("### 1. Aperçu du jeu de données brut")
 st.dataframe(df.head())

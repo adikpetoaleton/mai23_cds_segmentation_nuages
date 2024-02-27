@@ -128,39 +128,6 @@ def displayBoundingBox(imageid, ax, x, y, w, h):
     ax.imshow(im)
     ax.plot([x1, x2 ,x2, x1, x1],[y1, y1, y2, y2, y1],'yellow')
 
-# Displays one mask on top of its originate image
-def displayMask(imageid, ax, masks, w, h, cmap, alpha, image_path):
-    
-    img_id = imageid.split('_')[0]
-    
-    image_path = image_path
-    img = cv2.imread(image_path + img_id + '.jpg')
-    
-    # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
-    masks_filtered_byId = masks[masks['ImageId']==imageid]
-    img_masks = masks_filtered_byId['EncodedPixels'].tolist()
-    img_masks_labels = masks_filtered_byId['Label'].tolist()
-
-    # Convert RLE encoded masks into a binary encoded grids
-    all_masks = np.zeros((h, w))
-    one_mask = np.zeros((h, w))
-    mask_origines = []
-    for rle_mask in img_masks:
-        one_mask = rle_to_mask(rle_mask, w, h)
-        mask_origines.append(get_mask_origine(one_mask))
-        all_masks += one_mask
-      
-    # Displays images and related masks
-    for origine, label in zip(mask_origines, img_masks_labels):
-        ax.annotate(text=label + " 0", xy=origine[0], xytext=(20, -40), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow'))
-        ax.annotate(text=label + " 1", xy=origine[1], xytext=(-100, 20), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow')) 
-
-    #ax.axis('off')
-    ax.set_title(imageid)
-    
-    ax.imshow(img)
-    ax.imshow(all_masks, cmap=cmap, alpha=alpha)
-
 def display_info(txt, color='Black'):
     st.write("<span style='color:" + color + ";'>_" + txt + "_</span>", unsafe_allow_html=True)
 
@@ -170,3 +137,56 @@ def markDuplicate(data, group_field, count_field):
     l = list(g[g['Count'] > 1]['FileId'])
     data['Multiple'] = data['FileId'].apply(lambda fieldid: True if fieldid in l else False )
     return data
+
+def display_info_list_items(items, color='Black'):
+    st.write("- " + "\n- ".join(items))
+
+def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask=False):
+
+    cmap = 'viridis'
+    alpha = 0.2
+
+    img_id = imageid.split('_')[0]
+    
+    image_path = image_path
+    img = cv2.imread(image_path + img_id + '.jpg')
+
+    if show_mask:
+        # Get RLE encoded masks of an image by its imageid and related labels (Flower, Fish...)
+        masks_filtered_byId = masks[masks['ImageId']==imageid]
+        img_masks = masks_filtered_byId['EncodedPixels'].tolist()
+        img_masks_labels = masks_filtered_byId['Label'].tolist()
+    
+        # Convert RLE encoded masks into a binary encoded grids
+        all_masks = np.zeros((h, w))
+        one_mask = np.zeros((h, w))
+        mask_origines = []
+        for rle_mask in img_masks:
+            one_mask = rle_to_mask(rle_mask, w, h)
+            mask_origines.append(get_mask_origine(one_mask))
+            all_masks += one_mask
+
+    # Displays images and related masks
+    if hide_axis:
+        ax.axis('off')
+
+    if show_mask:
+        # Displays images and related masks
+        for origine, label in zip(mask_origines, img_masks_labels):
+            ax.annotate(text=label + " 0", xy=origine[0], xytext=(20, -40), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow'))
+            ax.annotate(text=label + " 1", xy=origine[1], xytext=(-100, 20), xycoords='data', color='yellow', fontsize=10, fontweight='bold', textcoords='offset pixels', arrowprops=dict(arrowstyle="-|>", color='yellow')) 
+
+    ax.set_title(imageid)
+    
+    ax.imshow(img)
+
+    if show_mask:
+        ax.imshow(all_masks, cmap=cmap, alpha=alpha)
+
+def showImages(ImageIds, grid_x, grid_y, df, img_width, img_height, image_path, hide_axis=True, show_mask=False):
+    fig, axes = plt.subplots(grid_x, grid_y, figsize=(20, 10), layout='constrained')
+    for axe, img_id in zip(axes.flat, ImageIds):
+        displayMask(img_id, axe, df, img_width, img_height, image_path, hide_axis, show_mask)
+    st.pyplot(fig)
+    
+
