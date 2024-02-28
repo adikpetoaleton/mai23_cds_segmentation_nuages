@@ -132,14 +132,12 @@ if isCharger:
                 "**CloudRatio** : Taux d'occupation d'une zone nuageuse par rapport à l'ensemble de l'image",
                 "**X, Y, W, H** : Coordonnées de la Bounding Box",
                 "**ResizedMaskPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
-                "**BoundingBoxPixelsCount** : Nombre de pixels dans le segment d'une image non réduite",
-                "**BoxMaskGap** : Ecart entre la superficie réelle d'un segment et sa Bounding Box",
-                "**Label** : Nom de la classe de nuage",
-                "**Class** : Code de la classe de nuage"
+                "**BoundingBoxPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
+                "**BoxMaskGap** : Ecart entre la superficie réelle d'un segment et la superficie de la Bounding Box",
+                "**Label** : Nom de la classe de nuage (Fish, Flower, Gravel, Sugar)",
+                "**Class** : Code de la classe de nuag (0, 1, 2, 3)"
             ]
             display_info_list_items(champs)
-
-
 
 ###########################
 # Exploration des données #
@@ -158,7 +156,7 @@ if isCharger:
     dist2 = pd.DataFrame(class_per_image['Occurence'].value_counts())
     dist2.reset_index(drop=False, inplace=True)
     dist2.sort_values(by='Occurence', ascending=True, inplace=True)
-    dist2 = dist2.replace(to_replace=[1, 2, 3, 4], value=['1 Label(s)', '2 Label(s)', '3 Label(s)', '4 Label(s)'])
+    dist2 = dist2.replace(to_replace=[1, 2, 3, 4], value=['1 Label', '2 Labels', '3 Labels', '4 Labels'])
 
     ##############################
     # Affichage des statistiques #
