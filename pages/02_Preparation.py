@@ -52,7 +52,7 @@ if st.checkbox("Afficher les informations", key='info_1'):
 # Filtrage des observations  #
 ##############################
 
-st.markdown("### 2. Filtrage des observations masquées par une barre noire")
+st.markdown("### 2. Filtrage des observations masquées par une barre noire de façon significative")
 
 tab_a1, tab_a2 = st.tabs(['Observations masquées', 'Jeu de données filtré'])
 
