@@ -61,7 +61,7 @@ st.markdown("### 2. Filtrage des observations")
 display_info("A partir de cet instant, nous allons procéder à 2 étapes de filtrage des observations à savoir la purge des images significative \
 altérées par une barre noire, puis celle des images dont les segments sont disjoints par nature.")
 
-st.markdown("#### 2.1 Filtrage des observations masquées par une barre noire de façon significative")
+st.markdown("##### Filtrage des observations masquées par une barre noire de façon significative")
 
 tab_a1, tab_a2 = st.tabs(['Observations masquées', 'Jeu de données filtré'])
 
@@ -99,7 +99,7 @@ st.info(
 
 # Filtrage des observations avec segments disjoints
 
-st.markdown("#### 2.2 Filtrage des observations avec segments disjoints")
+st.markdown("##### Filtrage des observations avec segments disjoints")
 st.info(
     "En appliquant ce filtre, nous retirons du jeu de données l'ensemble des observations \
     pour lesquelles les segments de zone nuageuse ne délimitent pas une étendue continue.\
