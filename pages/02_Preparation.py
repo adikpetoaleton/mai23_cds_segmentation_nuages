@@ -58,7 +58,7 @@ if st.checkbox("Afficher les informations", key='info_1'):
 ##############################
 
 st.markdown("### 2. Filtrage des observations")
-display_info("A partir de cet instant, nous allons procéder à 2 étapes de filtrage des observations à savoir la purge des images significative \
+display_info("A partir de cet instant, nous allons procéder à 2 étapes de filtrage des observations à savoir la purge des images significativement \
 altérées par une barre noire, puis celle des images dont les segments sont disjoints par nature.")
 
 st.markdown("##### Filtrage des observations masquées par une barre noire de façon significative")
@@ -104,7 +104,9 @@ st.info(
     "En appliquant ce filtre, nous retirons du jeu de données l'ensemble des observations \
     pour lesquelles les segments de zone nuageuse ne délimitent pas une étendue continue.\
     Il peut s'agir de véritable zone nuageuse disjointe et de même catégorie ou alors \
-    d'une zone traversée par une barre noire.", icon="ℹ️"
+    d'une zone traversée par une barre noire.\
+    Nous considérons raisonnablement qu'un écart de plus de 9% entre la superficie d'un segment et celle\
+    de la Bounding Box peut être considéré comme un cas de segment disjoint.", icon="ℹ️"
 )
 
 if st.checkbox("Filtrer les observations", key='info_3'):
@@ -126,7 +128,7 @@ if st.checkbox("Filtrer les observations", key='info_3'):
 # Visualisation des bounding Box #
 ##################################
 
-st.markdown("### 3. Visualisation des Bounding Box")
+st.markdown("### 3. Visualisation de quelques observations candidates à la segmentation")
 
 if st.button('Afficher / Rafraîchir'):
 
