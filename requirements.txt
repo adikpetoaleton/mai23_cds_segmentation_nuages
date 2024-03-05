@@ -2,4 +2,3 @@ matplotlib
 scikit-learn
 seaborn
 opencv-python-headless
-ACU
