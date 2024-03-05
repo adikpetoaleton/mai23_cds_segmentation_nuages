@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from tqdm import tqdm
+#from tqdm import tqdm
 import time
 import cv2
 import tensorflow as tf
