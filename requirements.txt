@@ -2,4 +2,4 @@ matplotlib
 scikit-learn
 seaborn
 opencv-python-headless
-tensorflow
+tensorflow-cpu
