@@ -28,9 +28,29 @@ tf.keras.backend.clear_session()
 
 st.set_page_config(layout='centered')
 
+#########################################
+# Initialisation des variables globales #
+#########################################
+
+RESIZED_PATH = 'images/resized/'
+IMAGES_PATH = 'images/'
+RESIZE_VALUE = (256, 256)
+TRAINING_DATASET = 'clouds_3.csv'
+ORIGINAL_IMAGE_WIDTH = 2100
+ORIGINAL_IMAGE_HEIGHT = 1400
+OUTPUT_SHAPE = (8, 8)
+BATCH_SIZE = 128
+EPOCH = 20
+NB_CLASSES = 4
+EFFICIENT_NET_INPUT_SHAPE = (256, 256, 3)
+LEARNING_RATE = 1e-3
+TRAIN_SPLIT_SIZE = 0.7
+HIST_FILE = 'training_history.csv'
+MODEL_FILE = 'model.h5'
+
 @st.cache_data
 def load_training_data():
-    data = pd.read_csv('clouds_3.csv')
+    data = pd.read_csv('clouds_2.csv')
     return data
 
 ###########################################
@@ -62,32 +82,32 @@ display_info("Cette phase consiste à explorer et visualiser le jeu de données 
 # Chargement du jeu de données initiale #
 #########################################
 if st.session_state.dataframe_1 is None:
-    st.session_state.dataframe_1 = load_Initial_data()
+    st.session_state.dataframe_1 = load_training_data()
     dataframe_1 = st.session_state.dataframe_1
 
-# #################################
-# # Aperçu du jeu de données brut #
-# #################################
+#################################
+# Aperçu du jeu de données brut #
+#################################
 
-# st.markdown("### 1. Aperçu du jeu de données brut")
+st.markdown("### 1. Aperçu du jeu de données enrichi")
 
-# st.dataframe(dataframe_1.head(10))
+st.dataframe(dataframe_1.head(10))
 
-# # Informations sur le dataset
-# if st.checkbox("Afficher les informations", key='info_1'):
-#     info_buffer = io.StringIO()
-#     dataframe_1.info(buf=info_buffer)
-#     info_output = info_buffer.getvalue()
-#     st.text(info_output)
+# Informations sur le dataset
+if st.checkbox("Afficher les informations", key='info_1'):
+    info_buffer = io.StringIO()
+    dataframe_1.info(buf=info_buffer)
+    info_output = info_buffer.getvalue()
+    st.text(info_output)
 
-#     st.info(
-#         "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
-#         Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
-#         image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).\
-#         \n\nNous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
-#         Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
-#         l'aide de variables explicatives supplémentaires.", icon="ℹ️"
-#     )
+    st.info(
+        "Les 10 premières observations du jeu de données sont affichées en guise d'aperçu.\
+        Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
+        image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).\
+        \n\nNous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
+        Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
+        l'aide de variables explicatives supplémentaires.", icon="ℹ️"
+    )
 
 # #########################
 # # Nettoyage des données #
