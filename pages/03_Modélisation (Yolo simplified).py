@@ -71,23 +71,23 @@ def load_hist_data():
 # Initialisation des variables de session #
 ###########################################
 
-if 'dataframe_1' not in st.session_state:
-    st.session_state.dataframe_1 = None
-    dataframe_1 = None
+if 'dataframe_11' not in st.session_state:
+    st.session_state.dataframe_11 = None
+    dataframe_11 = None
 else:
-    dataframe_1 = st.session_state.dataframe_1
+    dataframe_11 = st.session_state.dataframe_11
 
-if 'dataframe_2' not in st.session_state:
-    st.session_state.dataframe_2 = None
-    dataframe_2 = None
+if 'dataframe_21' not in st.session_state:
+    st.session_state.dataframe_21 = None
+    dataframe_21 = None
 else:
-    dataframe_2 = st.session_state.dataframe_2
+    dataframe_21 = st.session_state.dataframe_21
 
-if 'dataframe_3' not in st.session_state:
-    st.session_state.dataframe_3 = None
-    dataframe_3 = None
+if 'dataframe_31' not in st.session_state:
+    st.session_state.dataframe_31 = None
+    dataframe_31 = None
 else:
-    dataframe_3 = st.session_state.dataframe_3
+    dataframe_31 = st.session_state.dataframe_31
 
 if 'isCharger' not in st.session_state:
     st.session_state.isCharger = None
@@ -101,9 +101,9 @@ display_info("Cette phase consiste à explorer et visualiser le jeu de données 
 #########################################
 # Chargement du jeu de données initiale #
 #########################################
-if st.session_state.dataframe_1 is None:
-    st.session_state.dataframe_1 = load_initial_data()
-    dataframe_1 = st.session_state.dataframe_1
+if st.session_state.dataframe_11 is None:
+    st.session_state.dataframe_11 = load_initial_data()
+    dataframe_11 = st.session_state.dataframe_11
 
 #################################
 # Aperçu du jeu de données brut #
@@ -111,12 +111,12 @@ if st.session_state.dataframe_1 is None:
 
 st.markdown("### 1. Aperçu du jeu de données enrichi")
 
-st.dataframe(dataframe_1.head(10))
+st.dataframe(dataframe_11.head(10))
 
 # Informations sur le dataset
 if st.checkbox("Afficher les informations", key='info_1'):
     info_buffer = io.StringIO()
-    dataframe_1.info(buf=info_buffer)
+    dataframe_11.info(buf=info_buffer)
     info_output = info_buffer.getvalue()
     st.text(info_output)
 
@@ -147,9 +147,9 @@ display_info_list_items(bullet_points)
 
 if st.button('Charger'):
 
-    if st.session_state.dataframe_2 is None:
-        st.session_state.dataframe_2 = load_enriched_data()
-        dataframe_2 = st.session_state.dataframe_2
+    if st.session_state.dataframe_21 is None:
+        st.session_state.dataframe_21 = load_enriched_data()
+        dataframe_21 = st.session_state.dataframe_21
 
     if st.session_state.isCharger != True:
         st.session_state.isCharger = True
@@ -157,7 +157,7 @@ if st.button('Charger'):
 
 if isCharger:
 
-    st.dataframe(dataframe_2.head(10))
+    st.dataframe(dataframe_21.head(10))
 
     # Informations sur le dataset
     if st.checkbox("Afficher les informations", key='info_2'):
@@ -166,7 +166,7 @@ if isCharger:
         tab_a1, tab_a2 = st.tabs(['Structure du Dataset', 'Nomenclature des champs'])
         with tab_a1:
             info_buffer = io.StringIO()
-            dataframe_2.info(buf=info_buffer)
+            dataframe_21.info(buf=info_buffer)
             info_output = info_buffer.getvalue()
             st.text(info_output)
 
@@ -193,13 +193,13 @@ if isCharger:
 if isCharger:
 
     # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
-    tmp = dataframe_2[dataframe_2['EncodedPixels'] != -1]
+    tmp = dataframe_21[dataframe_21['EncodedPixels'] != -1]
     value_counts = tmp['FileName'].value_counts()
     mono_class_items = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
     df_mono_class_unseen = tmp[tmp['FileName'].isin(mono_class_items)]
     df_mono_class_unseen.reset_index(drop=True, inplace=True)
 
-    df_train_test = dataframe_2[~dataframe_2['FileName'].isin(mono_class_items)]
+    df_train_test = dataframe_21[~dataframe_21['FileName'].isin(mono_class_items)]
 
     # Création d'une liste de 100 images mono-class vu par le système pendant l'apprentissage
     tmp = df_train_test[df_train_test['EncodedPixels'] != -1]
@@ -247,20 +247,20 @@ if isCharger:
 
     st.markdown("### 4. Affichage de la courbe d'apprentissage")
 
-    if st.session_state.dataframe_3 is None:
-        st.session_state.dataframe_3 = load_hist_data()
-        dataframe_3 = st.session_state.dataframe_3
+    if st.session_state.dataframe_31 is None:
+        st.session_state.dataframe_31 = load_hist_data()
+        dataframe_31 = st.session_state.dataframe_31
 
     fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
 
     axes[0].set_title('Loss')
-    axes[0].plot(dataframe_3['loss'])
-    axes[0].plot(dataframe_3['val_loss'])
+    axes[0].plot(dataframe_31['loss'])
+    axes[0].plot(dataframe_31['val_loss'])
     axes[0].legend(['Train', 'Test'], loc='upper left')
 
     axes[1].set_title('Mean IOU')
-    axes[1].plot(dataframe_3['mean_iou'])
-    axes[1].plot(dataframe_3['val_mean_iou'])
+    axes[1].plot(dataframe_31['mean_iou'])
+    axes[1].plot(dataframe_31['val_mean_iou'])
     axes[1].legend(['Train', 'Test'], loc='upper left')
 
     plt.tight_layout()
@@ -289,7 +289,7 @@ if isCharger:
 
         fig4, axes = plt.subplots(1, 2, figsize=(12, 7))
         result = show_prediction(img , model, axes[0], threshold=0.6)
-        show_ground(imLabel, axes[1], dataframe_2, ORIGINAL_IMAGE_WIDTH, ORIGINAL_IMAGE_HEIGHT, IMAGES_PATH, hide_axis=False, show_mask=True)
+        show_ground(imLabel, axes[1], dataframe_21, ORIGINAL_IMAGE_WIDTH, ORIGINAL_IMAGE_HEIGHT, IMAGES_PATH, hide_axis=False, show_mask=True)
                     
         plt.tight_layout()
         st.pyplot(fig4)
@@ -301,8 +301,8 @@ if isCharger:
 
 #     st.markdown("### 3. Exploration des données")
 
-#     class_per_image = dataframe_2.groupby('FileId').agg({'Class': 'count'}).rename({'Class':'Occurence'}, axis=1)
-#     dist1 = pd.DataFrame(dataframe_2['Class'].value_counts(normalize=True))
+#     class_per_image = dataframe_21.groupby('FileId').agg({'Class': 'count'}).rename({'Class':'Occurence'}, axis=1)
+#     dist1 = pd.DataFrame(dataframe_21['Class'].value_counts(normalize=True))
 #     dist1.reset_index(drop=False, inplace=True)
 #     dist1 = dist1.rename({'Class':'Ratio', 'index': 'Class'}, axis=1)
 #     dist1 = dist1.replace(to_replace=[0, 1, 2, 3], value=['Fish', 'Flower', 'Gravel', 'Sugar'])
@@ -318,7 +318,7 @@ if isCharger:
 
 #     # Stats n°1
 #     st.markdown("##### Résumé des statistiques (describe)")
-#     st.dataframe(dataframe_2.describe())
+#     st.dataframe(dataframe_21.describe())
 
 #     # Stats n°2
 #     st.markdown("##### Autres statistiques")
@@ -357,7 +357,7 @@ if isCharger:
 #     # Stats n°3
 #     st.markdown("##### Distribution de l'étendu des nuages par classe de nuage")
 
-#     g = sns.FacetGrid(dataframe_2, col='Label', height=4)
+#     g = sns.FacetGrid(dataframe_21, col='Label', height=4)
 #     g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
 #     st.pyplot(plt)
 
@@ -370,7 +370,7 @@ if isCharger:
 #     with exp1:
 #         sns.set(style='whitegrid')
 #         fig3, ax3 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='CloudRatio', data=dataframe_2, width=0.5)
+#         sns.boxplot(x='Label', y='CloudRatio', data=dataframe_21, width=0.5)
 #         sns.despine(left=True)
 #         st.pyplot(fig3)
 
@@ -378,7 +378,7 @@ if isCharger:
 #     with exp2:
 #         sns.set(style='whitegrid')
 #         fig4, ax4 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_2, width=0.5)
+#         sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_21, width=0.5)
 #         sns.despine(left=True)
 #         st.pyplot(fig4)
 
@@ -386,7 +386,7 @@ if isCharger:
 #     with exp3:
 #         sns.set(style='whitegrid')
 #         fig5, ax5 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
+#         sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_21, width=0.5)
 #         sns.despine(left=True)
 #         st.pyplot(fig5)
     
@@ -404,26 +404,26 @@ if isCharger:
 #             exp1 = st.expander("Visualiser des images multi-classes", expanded=True)
 #             with exp1:
 #                 ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-#                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
 #             exp2 = st.expander("Visualiser des images decrites par des segments compactes")
 #             with exp2:
 #                 ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
-#                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
 #             exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
 #             with exp3:
 #                 ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
-#                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
 #             exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
 #             with exp4:
 #                 ImageIds = ['f32724b_0', '17fe76e_0', '06e5dd6_0']
-#                 showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
+#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
             
 #             # exp1 = st.expander("Visualiser des images multi-classes")
 #             # with exp1:
-#             #     ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 9)
-#             #     showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+#             #     ImageIds = random.sample(dataframe_21['ImageId'].unique().tolist(), 9)
+#             #     showImages(ImageIds, 3, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
 
