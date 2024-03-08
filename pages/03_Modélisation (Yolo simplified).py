@@ -62,6 +62,11 @@ def load_enriched_data():
     data = pd.read_csv(ENRICHED_DATASET)
     return data
 
+@st.cache_data
+def load_hist_data():
+    data = pd.read_csv(HIST_FILE)
+    return data
+
 ###########################################
 # Initialisation des variables de session #
 ###########################################
@@ -77,6 +82,12 @@ if 'dataframe_2' not in st.session_state:
     dataframe_2 = None
 else:
     dataframe_2 = st.session_state.dataframe_2
+
+if 'dataframe_3' not in st.session_state:
+    st.session_state.dataframe_3 = None
+    dataframe_3 = None
+else:
+    dataframe_3 = st.session_state.dataframe_3
 
 if 'isCharger' not in st.session_state:
     st.session_state.isCharger = None
@@ -226,16 +237,32 @@ if isCharger:
     model.add(Dropout(0.2))
     model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.2))
-
     model.add(Dense(5 + NB_CLASSES))
-
-
 
     model.summary(print_fn=lambda x: st.text(x))
 
+###########################################
+# Chargement de la courbe d'apprentissage #
+###########################################
 
+    if st.session_state.dataframe_3 is None:
+        st.session_state.dataframe_3 = load_hist_data()
+        dataframe_3 = st.session_state.dataframe_3
 
+    fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
 
+    axes[0].set_title('Loss')
+    axes[0].plot(hist['loss'])
+    axes[0].plot(hist['val_loss'])
+    axes[0].legend(['Train', 'Test'], loc='upper left')
+
+    axes[1].set_title('Mean IOU')
+    axes[1].plot(hist['mean_iou'])
+    axes[1].plot(hist['val_mean_iou'])
+    axes[1].legend(['Train', 'Test'], loc='upper left')
+
+    plt.tight_layout()
+    st.pyplot(fig3)
 
 # if isCharger:
 
