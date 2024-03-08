@@ -241,20 +241,21 @@ def transform_netout(y_pred_raw):
 
 def show_prediction(img, model, ax, threshold=0.2):
     
-    pred = model(np.array([img], dtype=np.float32))[0]
+    # pred = model(np.array([img], dtype=np.float32))[0]
 
-    pred = transform_netout(pred)
+    # pred = transform_netout(pred)
 
-    bboxes_pred = pred_bboxes(pred, threshold)
+    # bboxes_pred = pred_bboxes(pred, threshold)
     
-    class_pred = CLASSES[np.argmax(bboxes_pred[0, 5:])]
-    box_prob = round(bboxes_pred[0, 0] * 100, 2)
-    class_prob = round(max(bboxes_pred[0, 5:]) * 100, 2)
+    # class_pred = CLASSES[np.argmax(bboxes_pred[0, 5:])]
+    # box_prob = round(bboxes_pred[0, 0] * 100, 2)
+    # class_prob = round(max(bboxes_pred[0, 5:]) * 100, 2)
 
-    plot_title = class_pred + ": " + str(class_prob) + " % - Bbox: " + str(box_prob) + " %"
+    # plot_title = class_pred + ": " + str(class_prob) + " % - Bbox: " + str(box_prob) + " %"
     
-    for bbox in bboxes_pred:
-        bbox = bbox[1:]
-        show_bounding_box(img/255, bbox, plot_title, ax)
+    # for bbox in bboxes_pred:
+    #     bbox = bbox[1:]
+    #     show_bounding_box(img/255, bbox, plot_title, ax)
     
-    return bboxes_pred
+    # return bboxes_pred
+    return "Coucou"
