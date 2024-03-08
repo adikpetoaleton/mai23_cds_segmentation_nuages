@@ -245,6 +245,8 @@ if isCharger:
 # Chargement de la courbe d'apprentissage #
 ###########################################
 
+    st.markdown("### 4. Affichage de la courbe d'apprentissage")
+
     if st.session_state.dataframe_3 is None:
         st.session_state.dataframe_3 = load_hist_data()
         dataframe_3 = st.session_state.dataframe_3
