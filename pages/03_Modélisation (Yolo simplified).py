@@ -282,8 +282,8 @@ if isCharger:
             model = tf.keras.models.load_model(MODEL_FILE, custom_objects={'global_loss': global_loss, 'mean_iou': mean_iou})
 
     if st.button('Prédire'):
-        fName = '0011165.jpg'
-        imLabel = '0011165.jpg_Fish'
+        fName = '2cf739a.jpg'
+        imLabel = '2cf739a.jpg_Fish'
         img = tf.io.read_file(RESIZED_PATH + fName)
         img = tf.image.decode_png(img, channels=3)
 
