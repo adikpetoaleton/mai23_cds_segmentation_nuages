@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
+OUTPUT_SHAPE = (8, 8)
+
 def display_info(txt, color='Black'):
     st.write("<span style='color:" + color + ";'>_" + txt + "_</span>", unsafe_allow_html=True)
 
