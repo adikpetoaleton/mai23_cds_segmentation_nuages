@@ -252,13 +252,13 @@ if isCharger:
     fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
 
     axes[0].set_title('Loss')
-    axes[0].plot(hist['loss'])
-    axes[0].plot(hist['val_loss'])
+    axes[0].plot(dataframe_3['loss'])
+    axes[0].plot(dataframe_3['val_loss'])
     axes[0].legend(['Train', 'Test'], loc='upper left')
 
     axes[1].set_title('Mean IOU')
-    axes[1].plot(hist['mean_iou'])
-    axes[1].plot(hist['val_mean_iou'])
+    axes[1].plot(dataframe_3['mean_iou'])
+    axes[1].plot(dataframe_3['val_mean_iou'])
     axes[1].legend(['Train', 'Test'], loc='upper left')
 
     plt.tight_layout()
