@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import tensorflow as tf
+import matplotlib.lines as lines
 
 OUTPUT_SHAPE = (8, 8)
 CLASSES = ['Fish', 'Flower', 'Gravel', 'Sugar']
