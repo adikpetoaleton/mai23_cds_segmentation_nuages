@@ -145,37 +145,32 @@ if st.button('Charger'):
 if isCharger:
     st.dataframe(dataframe_2.head(10))
 
-# if isCharger:
-#     # Informations sur le dataset
-#     if st.checkbox("Afficher les informations", key='info_2'):
+    # Informations sur le dataset
+    if st.checkbox("Afficher les informations", key='info_2'):
 
 
-#         tab_a1, tab_a2 = st.tabs(['Structure du Dataset', 'Nomenclature des champs'])
-#         with tab_a1:
-#             info_buffer = io.StringIO()
-#             dataframe_2.info(buf=info_buffer)
-#             info_output = info_buffer.getvalue()
-#             st.text(info_output)
+        tab_a1, tab_a2 = st.tabs(['Structure du Dataset', 'Nomenclature des champs'])
+        with tab_a1:
+            info_buffer = io.StringIO()
+            dataframe_2.info(buf=info_buffer)
+            info_output = info_buffer.getvalue()
+            st.text(info_output)
 
-#         with tab_a2:
-#             champs = [
-#                 "**ImageId** : Identifiant unique d'uneobservation",
-#                 "**FileId** : Identifiant unique d'un fichier image",
-#                 "**EncodedPixels** : Encodage RLE du segment",
-#                 "**EncodedPixelsCount** : Nombre de pixels dans un segment",
-#                 "**MeanPixelsCloud** : Moyenne des niveaux des pixels dans une zone nuageuse",
-#                 "**StdPixelsCloud** : Ecart-type des niveaux des pixels dans une zone nuageuse",
-#                 "**CountPixelsHiddenArea** : Nombre de pixels dans une barre noire",
-#                 "**RatioHiddenArea** : Taux d'occupation d'une barre noire par rapport à l'ensemble de l'image",
-#                 "**CloudRatio** : Taux d'occupation d'une zone nuageuse par rapport à l'ensemble de l'image",
-#                 "**X, Y, W, H** : Coordonnées de la Bounding Box",
-#                 "**ResizedMaskPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
-#                 "**BoundingBoxPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
-#                 "**BoxMaskGap** : Ecart entre la superficie réelle d'un segment et la superficie de la Bounding Box",
-#                 "**Label** : Nom de la classe de nuage (Fish, Flower, Gravel, Sugar)",
-#                 "**Class** : Code de la classe de nuag (0, 1, 2, 3)"
-#             ]
-#             display_info_list_items(champs)
+        with tab_a2:
+            champs = [
+                "**Image_Label** : Identifiant unique d'une observation",
+                "**FileName** : Nom du fichier image",
+                "**EncodedPixels** : Encodage RLE du segment",
+                "**EncodedPixelsCount** : Nombre de pixels dans un segment",
+                "**segmentCroppingRate** : Pourcentage de rognage d'un segment par une barre noire",
+                "**XMOY, YMOY, W, H** : Coordonnées de la Bounding Box",
+                "**ResizedMaskPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
+                "**BoundingBoxPixelsCount** : Nombre de pixels dans le segment d'une image réduite",
+                "**BoxMaskGap** : Ecart entre la superficie réelle d'un segment et la superficie de la Bounding Box",
+                "**Label** : Nom de la classe de nuage (Fish, Flower, Gravel, Sugar)",
+                "**Class_<Label>** : Encodage one hot da la classification des images"
+            ]
+            display_info_list_items(champs)
 
 # ###########################
 # # Exploration des données #
