@@ -36,7 +36,8 @@ st.set_page_config(layout='centered')
 RESIZED_PATH = 'images/resized/'
 IMAGES_PATH = 'images/'
 RESIZE_VALUE = (256, 256)
-TRAINING_DATASET = 'clouds_3.csv'
+INITIAL_DATASET = 'clouds_0_small.csv'
+TRAINING_DATASET = 'clouds_1_small.csv'
 ORIGINAL_IMAGE_WIDTH = 2100
 ORIGINAL_IMAGE_HEIGHT = 1400
 OUTPUT_SHAPE = (8, 8)
@@ -48,10 +49,12 @@ LEARNING_RATE = 1e-3
 TRAIN_SPLIT_SIZE = 0.7
 HIST_FILE = 'training_history.csv'
 MODEL_FILE = 'model.h5'
+NB_IMAGES_VISU = 4
+NB_COLUMN_VISU = 2
 
 @st.cache_data
 def load_training_data():
-    data = pd.read_csv('clouds_2.csv')
+    data = pd.read_csv(INITIAL_DATASET)
     return data
 
 ###########################################
