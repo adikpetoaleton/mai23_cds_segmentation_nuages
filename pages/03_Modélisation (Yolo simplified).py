@@ -24,7 +24,6 @@ import matplotlib.gridspec as gridspec
 from utility_for_modeling import *
 import io
 
-import sys
 
 tf.keras.backend.clear_session()
 
@@ -232,21 +231,7 @@ if isCharger:
 
 
 
-    # Capture the summary text
-    model_summary_text = []
-
-    # Redirect stdout to capture the print output
-    original_stdout = sys.stdout
-    sys.stdout = model_summary_text
-
-    # Display the model summary
-    model.summary()
-
-    # Restore the original stdout
-    sys.stdout = original_stdout
-
-    # Display the captured text using st.text
-    st.text(model_summary_text)
+    model.summary(print_fn=lambda x: st.text(x))
 
 
 
