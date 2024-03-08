@@ -3,6 +3,7 @@ import cv2
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+import tensorflow as tf
 
 OUTPUT_SHAPE = (8, 8)
 
