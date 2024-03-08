@@ -16,7 +16,13 @@ def display_info_list_items(items, color='Black'):
 
 
 
-
+def get_mask_origine(mask):
+    
+    white_pixels = np.array(np.where(mask == 255))
+    first_white_pixel = white_pixels[:,0]
+    last_white_pixel = white_pixels[:,-1]
+    
+    return (first_white_pixel[1], first_white_pixel[0]), (last_white_pixel[1], last_white_pixel[0])
 
 def rle_to_mask(rle_string, width, height):
    
