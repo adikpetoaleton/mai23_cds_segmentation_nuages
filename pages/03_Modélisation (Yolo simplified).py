@@ -287,7 +287,7 @@ if isCharger:
         img = tf.io.read_file(RESIZED_PATH + fName)
         img = tf.image.decode_png(img, channels=3)
 
-        fi4, axes = plt.subplots(1, 2, figsize=(12, 7))
+        fig4, axes = plt.subplots(1, 2, figsize=(12, 7))
         show_prediction(img , model, axes[0], threshold=0.2)
         #show_ground(imLabel, axes[1], dataframe_2, ORIGINAL_IMAGE_WIDTH, ORIGINAL_IMAGE_HEIGHT, IMAGES_PATH, hide_axis=False, show_mask=True)
                     
