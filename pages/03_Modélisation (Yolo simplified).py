@@ -180,11 +180,13 @@ if isCharger:
 if isCharger:
 
     # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
-    tmp = df[df['EncodedPixels'] != -1]
+    tmp = dataframe_2[dataframe_2['EncodedPixels'] != -1]
     value_counts = tmp['FileName'].value_counts()
     mono_class_items = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
     df_mono_class_unseen = tmp[tmp['FileName'].isin(mono_class_items)]
     df_mono_class_unseen.reset_index(drop=True, inplace=True)
+
+    df_train_test = dataframe_2[~dataframe_2['FileName'].isin(mono_class_items)]
 
     # Création d'une liste de 100 images mono-class vu par le système pendant l'apprentissage
     tmp = df_train_test[df_train_test['EncodedPixels'] != -1]
@@ -193,7 +195,7 @@ if isCharger:
     df_mono_class_seen = tmp[tmp['FileName'].isin(mono_class_items_seen)]
     df_mono_class_seen.reset_index(drop=True, inplace=True)
 
-    df_train_test = df[~df['FileName'].isin(mono_class_items)]
+
 
 # if isCharger:
 
