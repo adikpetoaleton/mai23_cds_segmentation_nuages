@@ -15,6 +15,63 @@ def display_info(txt, color='Black'):
 def display_info_list_items(items, color='Black'):
     st.write("- " + "\n- ".join(items))
 
+def class_loss(y_true, y_pred):
+    
+    y_true_conf = y_true[..., 0] # Vecteur de présence d'un objet
+    y_true_class = y_true[..., 5:] # Probabilité conditionelle des vrais objets
+    y_pred_class = y_pred[..., 5:] # Probabilité conditionelle des prédictions
+    
+    # Calcul de la fonction de perte
+    class_loss = tf.reduce_sum(y_true_conf * tf.reduce_sum(tf.square(y_true_class - y_pred_class), axis = -1), axis = -1)
+    
+    return class_loss
+
+def coord_loss(y_true, y_pred):
+    
+    # Probabilty of object presence
+    y_true_conf = y_true[..., 0]
+    
+    # x and y loss for real object
+    y_true_xy = y_true[..., 1:3]
+    y_pred_xy = y_pred[..., 1:3]
+    xy_loss = tf.reduce_sum(tf.reduce_sum(tf.square(y_true_xy - y_pred_xy), axis =- 1) * y_true_conf, axis = -1)
+    
+    # w and h loss for real object
+    y_true_wh = y_true[..., 3:5]
+    y_pred_wh = y_pred[..., 3:5]
+    wh_loss = tf.reduce_sum(tf.reduce_sum(tf.square(tf.sqrt(y_true_wh) - tf.sqrt(y_pred_wh)), axis = -1) * y_true_conf, axis = -1)
+    
+    return xy_loss + wh_loss
+
+lambda_noobj = 0.5
+
+def object_loss(y_true, y_pred):
+    
+    # x and y loss for real object
+    y_true_p = y_true[..., 0]
+    y_pred_p = y_pred[..., 0]
+    
+    return tf.reduce_sum((lambda_noobj + (1 - lambda_noobj) * y_true_p) * tf.square(y_true_p - y_pred_p), axis= -1)
+
+lambda_coord = 5
+lambda_object = 1
+lambda_class = 1
+
+def global_loss(y_true, y_pred):
+    
+    # Convert input
+    y_true = tf.cast(y_true, tf.float32)
+    y_pred = tf.cast(y_pred, tf.float32)
+    y_pred = transform_netout(y_pred)
+    
+    loss_coordinate = coord_loss(y_true, y_pred)
+    loss_object = object_loss(y_true, y_pred)
+    loss_class = class_loss(y_true, y_pred)
+    
+    return lambda_object * loss_object + lambda_coord * loss_coordinate + lambda_class * loss_class
+
+
+
 
 
 def get_mask_origine(mask):
