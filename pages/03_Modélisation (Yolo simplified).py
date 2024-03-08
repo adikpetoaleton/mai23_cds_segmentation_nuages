@@ -270,6 +270,25 @@ if isCharger:
         "à définir", icon="ℹ️"
     )
 
+##############
+# Prédiction #
+##############
+
+    st.markdown("### 5. Prédiction")
+
+    if st.button('Prédire'):
+        fName = 'ffd3dfb.jpg'
+        imLabel = 'ffd3dfb.jpg_Gravel'
+        img = tf.io.read_file(RESIZED_PATH + fName)
+        img = tf.image.decode_png(img, channels=3)
+
+        fi4, axes = plt.subplots(1, 2, figsize=(12, 7))
+        show_prediction(img , model, axes[0], threshold=0.1)
+        show_ground(imLabel, axes[1], df, ORIGINAL_IMAGE_WIDTH, ORIGINAL_IMAGE_HEIGHT, IMAGES_PATH, hide_axis=False, show_mask=True)
+                    
+        plt.tight_layout()
+        st.pyplot(fig4)
+
 # if isCharger:
 
 #     st.markdown("### 3. Exploration des données")
