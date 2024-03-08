@@ -6,6 +6,7 @@ import streamlit as st
 import tensorflow as tf
 
 OUTPUT_SHAPE = (8, 8)
+CLASSES = ['Fish', 'Flower', 'Gravel', 'Sugar']
 
 def display_info(txt, color='Black'):
     st.write("<span style='color:" + color + ";'>_" + txt + "_</span>", unsafe_allow_html=True)
