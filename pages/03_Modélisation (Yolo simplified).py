@@ -21,11 +21,9 @@ import random
 
 import matplotlib.gridspec as gridspec
 
-from utils import *
+from utility_for_modeling import *
 import io
 tf.keras.backend.clear_session()
-
-#from utility3 import *
 
 st.set_page_config(layout='centered')
 
@@ -109,27 +107,25 @@ if st.checkbox("Afficher les informations", key='info_1'):
         Afin de réduire la taille du fichier de soumission, l’encodage des segments d’une \
         image (EncodedPixels) a été réalisé à l’aide de la méthode Run-Length Encoding (RLE).\
         \n\nNous constatons que sur les 22184 observations enregistrées dans le Dataset, seulement 11836 seront à priori exploitables.\
-        Les étapes suivantes vont consister à nettoyer le jeu de données en retirant les champs vides puis à enrichir le Dataset à \
-        l'aide de variables explicatives supplémentaires.", icon="ℹ️"
+        Les étapes suivantes vont consisterà enrichir le Dataset à l'aide de variables explicatives supplémentaires.", icon="ℹ️"
     )
 
-# #########################
-# # Nettoyage des données #
-# #########################
+# ##############################
+# # Enrichissement des données #
+# ##############################
 
-# st.markdown("### 2. Nettoyage et enrichissement des données")
-# display_info("L'objectif de cette étape consiste à rendre le jeu de données exploitable. Les tâches suivantes seront effectuées :")
+st.markdown("### 2. Enrichissement des données")
+display_info("L'objectif de cette étape consiste à rendre le jeu de données exploitable. Les tâches suivantes seront effectuées :")
 
-# bullet_points = [
-#     "_Suppression des lignes vides_",
-#     "_Attribution d'un identifiant unique à chaque observation_",
-#     "_Estimation de la superficie des segments d'une image_",
-#     "_Ajout d'une Bounding box autour des segments_",
-#     "_Données statistiques sur les zones nuageuses_",
-#     "_Estimation du degré de compacité des segments_",
-#     "_Encodage de la classe de chaque observation_"
-# ]
-# display_info_list_items(bullet_points)
+bullet_points = [
+    "_Attribution d'un identifiant unique à chaque observation_",
+    "_Estimation de la superficie des segments d'une image_",
+    "_Ajout d'une Bounding box autour des segments_",
+    "_Données statistiques sur les zones nuageuses_",
+    "_Estimation du degré de compacité des segments_",
+    "_Encodage de la classe de chaque observation_"
+]
+display_info_list_items(bullet_points)
 
 # if st.button('Charger'):
 
