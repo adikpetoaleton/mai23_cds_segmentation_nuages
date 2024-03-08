@@ -239,7 +239,7 @@ def transform_netout(y_pred_raw):
 
     return tf.concat([y_pred_conf, y_pred_xy, y_pred_wh, y_pred_class], -1)
 
-def show_prediction(img, model, ax, threshold=0.2):
+def show_prediction(img, model, ax, threshold=0.6):
     
     pred = model(np.array([img], dtype=np.float32))[0]
 
@@ -247,15 +247,14 @@ def show_prediction(img, model, ax, threshold=0.2):
 
     bboxes_pred = pred_bboxes(pred, threshold)
     
-    # class_pred = CLASSES[np.argmax(bboxes_pred[0, 5:])]
-    # box_prob = round(bboxes_pred[0, 0] * 100, 2)
-    # class_prob = round(max(bboxes_pred[0, 5:]) * 100, 2)
+    class_pred = CLASSES[np.argmax(bboxes_pred[0, 5:])]
+    box_prob = round(bboxes_pred[0, 0] * 100, 2)
+    class_prob = round(max(bboxes_pred[0, 5:]) * 100, 2)
 
-    # plot_title = class_pred + ": " + str(class_prob) + " % - Bbox: " + str(box_prob) + " %"
+    plot_title = class_pred + ": " + str(class_prob) + " % - Bbox: " + str(box_prob) + " %"
     
-    # for bbox in bboxes_pred:
-    #     bbox = bbox[1:]
-    #     show_bounding_box(img/255, bbox, plot_title, ax)
+    for bbox in bboxes_pred:
+        bbox = bbox[1:]
+        show_bounding_box(img/255, bbox, plot_title, ax)
     
-    # return bboxes_pred
     return bboxes_pred
