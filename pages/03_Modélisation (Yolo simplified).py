@@ -266,6 +266,10 @@ if isCharger:
     plt.tight_layout()
     st.pyplot(fig3)
 
+    st.info(
+        "à définir", icon="ℹ️"
+    )
+
 # if isCharger:
 
 #     st.markdown("### 3. Exploration des données")
