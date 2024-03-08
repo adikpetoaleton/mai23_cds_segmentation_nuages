@@ -23,6 +23,9 @@ import matplotlib.gridspec as gridspec
 
 from utility_for_modeling import *
 import io
+
+import sys
+
 tf.keras.backend.clear_session()
 
 st.set_page_config(layout='centered')
@@ -227,15 +230,23 @@ if isCharger:
 
     model.add(Dense(5 + NB_CLASSES))
 
+
+
     # Capture the summary text
     model_summary_text = []
 
-    # Use a context manager to redirect the print output to a list
-    with st.capture_stdout() as model_summary_text:
-        model.summary()
+    # Redirect stdout to capture the print output
+    original_stdout = sys.stdout
+    sys.stdout = model_summary_text
+
+    # Display the model summary
+    model.summary()
+
+    # Restore the original stdout
+    sys.stdout = original_stdout
 
     # Display the captured text using st.text
-    st.text(model_summary_text.getvalue())
+    st.text(model_summary_text)
 
 
 
