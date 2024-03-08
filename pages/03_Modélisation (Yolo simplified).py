@@ -195,6 +195,42 @@ if isCharger:
     df_mono_class_seen = tmp[tmp['FileName'].isin(mono_class_items_seen)]
     df_mono_class_seen.reset_index(drop=True, inplace=True)
 
+########################
+# Définition du modèle #
+########################
+
+st.markdown("### 3. Définition du modèle")
+display_info("à compléter")
+
+if isCharger:
+
+    # Backbone
+    efficientNet = EfficientNetB0(include_top=False, input_shape=EFFICIENT_NET_INPUT_SHAPE, weights="imagenet")
+
+    # Freeze the blackbone
+    for layer in efficientNet.layers:
+        layer.trainable = False
+
+    model = Sequential()
+
+    # Feature extraction
+    model.add(efficientNet) 
+    model.add(Reshape([-1, 1280]))
+
+    # Regression
+    model.add(Dense(1024, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(512, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(256, activation='relu'))
+    model.add(Dropout(0.2))
+
+    model.add(Dense(5 + NB_CLASSES))
+
+    model.summary()
+
+
+
 
 
 # if isCharger:
