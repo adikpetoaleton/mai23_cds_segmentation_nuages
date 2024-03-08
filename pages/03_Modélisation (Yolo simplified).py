@@ -35,7 +35,7 @@ RESIZED_PATH = 'images/resized/'
 IMAGES_PATH = 'images/'
 RESIZE_VALUE = (256, 256)
 INITIAL_DATASET = 'clouds_0_small.csv'
-TRAINING_DATASET = 'clouds_1_small.csv'
+ENRICHED_DATASET = 'clouds_1_small.csv'
 ORIGINAL_IMAGE_WIDTH = 2100
 ORIGINAL_IMAGE_HEIGHT = 1400
 OUTPUT_SHAPE = (8, 8)
@@ -51,8 +51,13 @@ NB_IMAGES_VISU = 4
 NB_COLUMN_VISU = 2
 
 @st.cache_data
-def load_training_data():
+def load_initial_data():
     data = pd.read_csv(INITIAL_DATASET)
+    return data
+
+@st.cache_data
+def load_enriched_data():
+    data = pd.read_csv(ENRICHED_DATASET)
     return data
 
 ###########################################
@@ -84,7 +89,7 @@ display_info("Cette phase consiste à explorer et visualiser le jeu de données 
 # Chargement du jeu de données initiale #
 #########################################
 if st.session_state.dataframe_1 is None:
-    st.session_state.dataframe_1 = load_training_data()
+    st.session_state.dataframe_1 = load_initial_data()
     dataframe_1 = st.session_state.dataframe_1
 
 #################################
@@ -127,18 +132,18 @@ bullet_points = [
 ]
 display_info_list_items(bullet_points)
 
-# if st.button('Charger'):
+if st.button('Charger'):
 
-#     if st.session_state.dataframe_2 is None:
-#         st.session_state.dataframe_2 = load_cleaned_data()
-#         dataframe_2 = st.session_state.dataframe_2
+    if st.session_state.dataframe_2 is None:
+        st.session_state.dataframe_2 = load_enriched_data()
+        dataframe_2 = st.session_state.dataframe_2
 
-#     if st.session_state.isCharger != True:
-#         st.session_state.isCharger = True
-#         isCharger = True
+    if st.session_state.isCharger != True:
+        st.session_state.isCharger = True
+        isCharger = True
 
-# if isCharger:
-#     st.dataframe(dataframe_2.head(10))
+if isCharger:
+    st.dataframe(dataframe_2.head(10))
 
 # if isCharger:
 #     # Informations sur le dataset
