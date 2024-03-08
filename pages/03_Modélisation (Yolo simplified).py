@@ -276,6 +276,11 @@ if isCharger:
 
     st.markdown("### 5. Prédiction")
 
+    # Chargement du modèle depuis la sauvegrade model.h5
+    if (model == None):
+        if os.path.exists(MODEL_FILE):
+            model = tf.keras.models.load_model(MODEL_FILE, custom_objects={'global_loss': global_loss, 'mean_iou': mean_iou})
+
     if st.button('Prédire'):
         fName = 'ffd3dfb.jpg'
         imLabel = 'ffd3dfb.jpg_Gravel'
