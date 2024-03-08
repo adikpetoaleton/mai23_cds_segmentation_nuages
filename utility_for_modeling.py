@@ -258,4 +258,4 @@ def show_prediction(img, model, ax, threshold=0.2):
     #     show_bounding_box(img/255, bbox, plot_title, ax)
     
     # return bboxes_pred
-    return len(bboxes_pred)
+    return bboxes_pred
