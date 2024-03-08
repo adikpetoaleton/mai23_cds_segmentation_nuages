@@ -295,7 +295,6 @@ if isCharger:
         st.pyplot(fig4)
         
         # Debug
-        st.text(result)
         result
 
 # if isCharger:
