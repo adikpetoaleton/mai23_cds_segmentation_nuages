@@ -227,10 +227,15 @@ if isCharger:
 
     model.add(Dense(5 + NB_CLASSES))
 
-    info_buffer = io.StringIO()
-    model.summary(buf=info_buffer)
-    info_output = info_buffer.getvalue()
-    st.text(info_output)
+    # Capture the summary text
+    model_summary_text = []
+
+    # Use a context manager to redirect the print output to a list
+    with st.capture_stdout() as model_summary_text:
+        model.summary()
+
+    # Display the captured text using st.text
+    st.text(model_summary_text.getvalue())
 
 
 
