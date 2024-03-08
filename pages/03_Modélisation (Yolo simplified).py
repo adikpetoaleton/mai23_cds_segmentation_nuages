@@ -143,6 +143,7 @@ if st.button('Charger'):
         isCharger = True
 
 if isCharger:
+
     st.dataframe(dataframe_2.head(10))
 
     # Informations sur le dataset
@@ -172,9 +173,27 @@ if isCharger:
             ]
             display_info_list_items(champs)
 
-# ###########################
-# # Exploration des données #
-# ###########################
+############################################
+# Séparation du jeu de données des données #
+############################################
+
+if isCharger:
+
+    # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
+    tmp = df[df['EncodedPixels'] != -1]
+    value_counts = tmp['FileName'].value_counts()
+    mono_class_items = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
+    df_mono_class_unseen = tmp[tmp['FileName'].isin(mono_class_items)]
+    df_mono_class_unseen.reset_index(drop=True, inplace=True)
+
+    # Création d'une liste de 100 images mono-class vu par le système pendant l'apprentissage
+    tmp = df_train_test[df_train_test['EncodedPixels'] != -1]
+    value_counts = tmp['FileName'].value_counts()
+    mono_class_items_seen = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
+    df_mono_class_seen = tmp[tmp['FileName'].isin(mono_class_items_seen)]
+    df_mono_class_seen.reset_index(drop=True, inplace=True)
+
+    df_train_test = df[~df['FileName'].isin(mono_class_items)]
 
 # if isCharger:
 
