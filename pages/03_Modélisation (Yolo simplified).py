@@ -227,7 +227,10 @@ if isCharger:
 
     model.add(Dense(5 + NB_CLASSES))
 
-    model.summary()
+    info_buffer = io.StringIO()
+    model.summary(buf=info_buffer)
+    info_output = info_buffer.getvalue()
+    st.text(info_output)
 
 
 
