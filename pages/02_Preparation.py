@@ -19,11 +19,11 @@ def load_cleaned_data():
 # Initialisation des variables de session #
 ###########################################
 
-if 'dataframe_2' not in st.session_state:
-    st.session_state.dataframe_2 = None
-    dataframe_2 = None
+if 'dataframe_4' not in st.session_state:
+    st.session_state.dataframe_4 = None
+    dataframe_4 = None
 else:
-    dataframe_2 = st.session_state.dataframe_2
+    dataframe_4 = st.session_state.dataframe_4
 
 st.title("Préparation des données en vue de la segmentation")
 display_info("Cette phase consiste à retirer les abérrations du jeu de données en vue de la segmentation des images.")
@@ -35,16 +35,16 @@ display_info("Cette phase consiste à retirer les abérrations du jeu de donnée
 st.markdown("### 1. Aperçu du jeu de données enrichi précédemment")
 
 # Chargement du jeu de données enrichi
-if st.session_state.dataframe_2 is None:
-    st.session_state.dataframe_2 = load_cleaned_data()
-    dataframe_2 = st.session_state.dataframe_2
+if st.session_state.dataframe_4 is None:
+    st.session_state.dataframe_4 = load_cleaned_data()
+    dataframe_4 = st.session_state.dataframe_4
 
-st.dataframe(dataframe_2.head(10))
+st.dataframe(dataframe_4.head(10))
 
 # Informations sur le dataset
 if st.checkbox("Afficher les informations", key='info_1'):
     info_buffer = io.StringIO()
-    dataframe_2.info(buf=info_buffer)
+    dataframe_4.info(buf=info_buffer)
     info_output = info_buffer.getvalue()
     st.text(info_output)
 
@@ -67,7 +67,7 @@ tab_a1, tab_a2 = st.tabs(['Observations masquées', 'Jeu de données filtré'])
 
 # Identification des observations masquées
 with tab_a1:
-    df_hidden = dataframe_2[dataframe_2['RatioHiddenArea'] > 0.2][['FileId', 'CountPixelsHiddenArea', 'RatioHiddenArea']].groupby('FileId').agg({'CountPixelsHiddenArea': lambda x: x.mode().iloc[0], 'RatioHiddenArea': lambda x: x.mode().iloc[0]}).reset_index()
+    df_hidden = dataframe_4[dataframe_4['RatioHiddenArea'] > 0.2][['FileId', 'CountPixelsHiddenArea', 'RatioHiddenArea']].groupby('FileId').agg({'CountPixelsHiddenArea': lambda x: x.mode().iloc[0], 'RatioHiddenArea': lambda x: x.mode().iloc[0]}).reset_index()
     df_hidden = df_hidden.sort_values(by='RatioHiddenArea', ascending=False)
     st.dataframe(df_hidden)
 
@@ -78,17 +78,17 @@ with tab_a1:
         with st.spinner("Veuillez patienter"):
 
             ImageIds = ['24884e7_0', '3b9a092_0', '5265e81_0', '400a38d_0', '17fe76e_0', '42ac1b7_0', '171e62f_0', '06e5dd6_0', '076de5e_0']
-            showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, './images/', hide_axis=True, show_mask=False)
+            showImages(ImageIds, 3, 3, dataframe_4, 2100, 1400, './images/', hide_axis=True, show_mask=False)
 
 # Filtrage des observations masquées
 with tab_a2:
-    dataframe_2 = dataframe_2[dataframe_2['FileId'].apply(lambda x: all(exclude not in x for exclude in df_hidden['FileId'].tolist()))]
-    st.dataframe(dataframe_2.head(10))
+    dataframe_4 = dataframe_4[dataframe_4['FileId'].apply(lambda x: all(exclude not in x for exclude in df_hidden['FileId'].tolist()))]
+    st.dataframe(dataframe_4.head(10))
 
     # Informations sur le jeu de données
     if st.checkbox("Afficher les informations", key='info_2'):
         info_buffer = io.StringIO()
-        dataframe_2.info(buf=info_buffer)
+        dataframe_4.info(buf=info_buffer)
         info_output = info_buffer.getvalue()
         st.text(info_output)
 
@@ -114,13 +114,13 @@ if st.checkbox("Filtrer les observations", key='info_3'):
     GAP_LIMIT_LOW = 0
     GAP_LIMIT_HIGH = 0.09
 
-    dataframe_2 = dataframe_2[(dataframe_2['BoxMaskGap'] >= GAP_LIMIT_LOW) & (dataframe_2['BoxMaskGap'] < GAP_LIMIT_HIGH)]
+    dataframe_4 = dataframe_4[(dataframe_4['BoxMaskGap'] >= GAP_LIMIT_LOW) & (dataframe_4['BoxMaskGap'] < GAP_LIMIT_HIGH)]
     
-    st.dataframe(dataframe_2)
+    st.dataframe(dataframe_4)
     
     if st.checkbox("Afficher les informations", key='info_4'):
         info_buffer = io.StringIO()
-        dataframe_2.info(buf=info_buffer)
+        dataframe_4.info(buf=info_buffer)
         info_output = info_buffer.getvalue()
         st.text(info_output)
 
@@ -133,15 +133,15 @@ st.markdown("### 3. Visualisation de quelques observations candidates à la segm
 if st.button('Afficher / Rafraîchir'):
 
     with st.spinner("Veuillez patienter"):
-        ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 3)
-        showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=False, show_mask=True)
+        ImageIds = random.sample(dataframe_4['ImageId'].unique().tolist(), 3)
+        showImages(ImageIds, 1, 3, dataframe_4, 2100, 1400, 'images/', hide_axis=False, show_mask=True)
 
         fig, axes = plt.subplots(1, 3, figsize=(15, 20), layout='constrained')
         for axe, img_id in zip(axes.flat, ImageIds):
-            x = dataframe_2[dataframe_2['ImageId'] == img_id].X
-            y = dataframe_2[dataframe_2['ImageId'] == img_id].Y
-            w = dataframe_2[dataframe_2['ImageId'] == img_id].W
-            h = dataframe_2[dataframe_2['ImageId'] == img_id].H
+            x = dataframe_4[dataframe_4['ImageId'] == img_id].X
+            y = dataframe_4[dataframe_4['ImageId'] == img_id].Y
+            w = dataframe_4[dataframe_4['ImageId'] == img_id].W
+            h = dataframe_4[dataframe_4['ImageId'] == img_id].H
             displayBoundingBox(img_id, axe, x, y, w, h)
         st.pyplot(fig)
 
