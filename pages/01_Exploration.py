@@ -36,11 +36,11 @@ if 'dataframe_2' not in st.session_state:
 else:
     dataframe_2 = st.session_state.dataframe_2
 
-if 'isCharger' not in st.session_state:
-    st.session_state.isCharger = None
-    isCharger = None
+if 'isCharger2' not in st.session_state:
+    st.session_state.isCharger2 = None
+    isCharger2 = None
 else:
-    isCharger = st.session_state.isCharger
+    isCharger2 = st.session_state.isCharger2
 
 st.title("Exploration et visualisation des données")
 display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
@@ -100,14 +100,14 @@ if st.button('Charger'):
         st.session_state.dataframe_2 = load_cleaned_data()
         dataframe_2 = st.session_state.dataframe_2
 
-    if st.session_state.isCharger != True:
-        st.session_state.isCharger = True
-        isCharger = True
+    if st.session_state.isCharger2 != True:
+        st.session_state.isCharger2 = True
+        isCharger2 = True
 
-if isCharger:
+if isCharger2:
     st.dataframe(dataframe_2.head(10))
 
-if isCharger:
+if isCharger2:
     # Informations sur le dataset
     if st.checkbox("Afficher les informations", key='info_2'):
 
@@ -143,7 +143,7 @@ if isCharger:
 # Exploration des données #
 ###########################
 
-if isCharger:
+if isCharger2:
 
     st.markdown("### 3. Exploration des données")
 

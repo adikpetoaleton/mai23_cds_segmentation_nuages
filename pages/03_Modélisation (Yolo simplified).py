@@ -89,11 +89,11 @@ if 'dataframe_31' not in st.session_state:
 else:
     dataframe_31 = st.session_state.dataframe_31
 
-if 'isCharger2' not in st.session_state:
-    st.session_state.isCharger2 = None
-    isCharger2 = None
+if 'isCharger3' not in st.session_state:
+    st.session_state.isCharger3 = None
+    isCharger3 = None
 else:
-    isCharger2 = st.session_state.isCharger2
+    isCharger3 = st.session_state.isCharger3
 
 st.title("Exploration et visualisation des données")
 display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
@@ -151,11 +151,11 @@ if st.button('Charger'):
         st.session_state.dataframe_21 = load_enriched_data()
         dataframe_21 = st.session_state.dataframe_21
 
-    if st.session_state.isCharger2 != True:
-        st.session_state.isCharger2 = True
-        isCharger2 = True
+    if st.session_state.isCharger3 != True:
+        st.session_state.isCharger3 = True
+        isCharger3 = True
 
-if isCharger2:
+if isCharger3:
 
     st.dataframe(dataframe_21.head(10))
 
@@ -190,7 +190,7 @@ if isCharger2:
 # Séparation du jeu de données des données #
 ############################################
 
-if isCharger2:
+if isCharger3:
 
     # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
     tmp = dataframe_21[dataframe_21['EncodedPixels'] != -1]
@@ -215,7 +215,7 @@ if isCharger2:
 st.markdown("### 3. Définition du modèle")
 display_info("à compléter")
 
-if isCharger2:
+if isCharger3:
 
     # Backbone
     efficientNet = EfficientNetB0(include_top=False, input_shape=EFFICIENT_NET_INPUT_SHAPE, weights="imagenet")
@@ -297,7 +297,7 @@ if isCharger2:
         # Debug
         result
 
-# if isCharger2:
+# if isCharger3:
 
 #     st.markdown("### 3. Exploration des données")
 
