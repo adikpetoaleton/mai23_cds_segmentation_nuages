@@ -6,6 +6,15 @@ st.set_page_config(
     page_icon=":one:"
 )
 
+
+
+@st.cache
+def load_image(image_path):
+    return Image.open(image_path)
+    
+teaser_image = load_image("Teaser_AnimationwLabels.gif")
+
+
 # #def main():
 
 # st.sidebar.title('CloudIAtlas Project')
@@ -46,7 +55,8 @@ satellite.\
 <br><br>Cette recherche guidera le développement de modèles de nouvelle génération qui\
 pourraient réduire les incertitudes des projections climatiques</p><br>", unsafe_allow_html=True)
 
-st.image("Teaser_AnimationwLabels.gif")
+#st.image("Teaser_AnimationwLabels.gif")
+st.image(teaser_image)
 
 # if __name__ == '__main__':
 #     main()
