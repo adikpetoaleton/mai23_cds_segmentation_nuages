@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 import seaborn as sns
 import random
 import io
-from utility_for_exploration.py import *
+from utility_for_exploration import *
 
 st.set_page_config(page_title="Head in the sky", page_icon=":two:", layout='centered')
 
@@ -26,31 +26,31 @@ st.set_page_config(page_title="Head in the sky", page_icon=":two:", layout='cent
 # st.sidebar.markdown("***Aziz***")
 # st.sidebar.markdown("***Alban*** ")
 
-@st.cache_data
-def load_Initial_data():
-    data = pd.read_csv('clouds_0.csv')
-    return data
+# @st.cache_data
+# def load_Initial_data():
+#     data = pd.read_csv('clouds_0.csv')
+#     return data
 
-@st.cache_data
-def load_cleaned_data():
-    data = pd.read_csv('clouds_1.csv')
-    return data
+# @st.cache_data
+# def load_cleaned_data():
+#     data = pd.read_csv('clouds_1.csv')
+#     return data
 
-###########################################
-# Initialisation des variables de session #
-###########################################
+# ###########################################
+# # Initialisation des variables de session #
+# ###########################################
 
-if 'dataframe_1' not in st.session_state:
-    st.session_state.dataframe_1 = None
-    dataframe_1 = None
-else:
-    dataframe_1 = st.session_state.dataframe_1
+# if 'dataframe_1' not in st.session_state:
+#     st.session_state.dataframe_1 = None
+#     dataframe_1 = None
+# else:
+#     dataframe_1 = st.session_state.dataframe_1
 
-if 'dataframe_2' not in st.session_state:
-    st.session_state.dataframe_2 = None
-    dataframe_2 = None
-else:
-    dataframe_2 = st.session_state.dataframe_2
+# if 'dataframe_2' not in st.session_state:
+#     st.session_state.dataframe_2 = None
+#     dataframe_2 = None
+# else:
+#     dataframe_2 = st.session_state.dataframe_2
 
 if 'isCharger2' not in st.session_state:
     st.session_state.isCharger2 = None
