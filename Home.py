@@ -14,8 +14,15 @@ image = 'utils\cloudiatlas.png'
 
 # Ajoutez l'image à la barre latérale
 st.sidebar.image(image, caption='Référence littéraire et cinématographique', use_column_width=True)
-
-
+st.sidebar.divider()
+st.sidebar.text("Avec la participation de :")
+st.sidebar.markdown("***Alêton ADIKPETO***")
+st.sidebar.markdown("***Soudjad CASSAM-CHENAI***")
+st.sidebar.markdown("***Arnaud KREWERAS***")
+st.sidebar.divider()
+st.sidebar.text("Et comme guest stars :")
+st.sidebar.markdown("***Aziz***")
+st.sidebar.markdown("***Alban*** ")
 
 st.title(":one: Segmentation de régions nuageuses")
 st.write("<br><p style='text-align: justify;'>Depuis de nombreuses années, le changement climatique est au cœur des préoccupations\
