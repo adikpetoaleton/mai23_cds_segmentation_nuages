@@ -9,7 +9,7 @@ st.set_page_config(
 
 
 
-@st.cache
+@st.cache_data
 def load_image(image_path):
     return Image.open(image_path)
 
