@@ -38,6 +38,25 @@ model_stripe = load_model_stripe_cached()
 st.title(":five: Modélisation avec U-Net")
 display_info("Espace de test de l'architecture U-Net pour la segmentation sémantique des régions nuageuses")
 
+st.header("Présentation U-Net & Paradoxe de la mesure")
+st.write("<br><p style='text-align: justify;'>L’architecture U-Net a été développée pour la segmentation d’images biomédicales. Elle est basée sur l’architecture entièrement convolutionnelle, modifiée pour fonctionner avec moins d’images d’entraînement et permettre une segmentation plus précise.\
+<br><br>Dans le cadre d’un projet ML d’identification de formes de nuages sur des photos satellites, donc de vision par ordinateur, l’usage de U-Net se justifie par sa capacité à effectuer une segmentation sémantique (segmentation + classification), c’est-à-dire à classer chaque pixel d’une image comme appartenant à une classe particulière.", unsafe_allow_html=True)
+
+# unet_image = 'utils\unet.png'
+# unet_image = 'utils\\unet.png'
+st.image('utils\\unet.png', caption='U-Net architecture', use_column_width=True)
+
+st.write("<br><p style='text-align: justify;'>Alors c'est quoi ce paradoxe de la mesure ? \
+         <br>Et pourquoi ce titre pseudo énigmatique !? Pour ne pas que tu t'endormes mon enfant !!!", unsafe_allow_html=True)
+st.image('utils\\paradoxe.png', use_column_width=True)
+st.write("<br><p style='text-align: justify;'>D'abord, que mesure t'on justement ?", unsafe_allow_html=True)
+st.image('utils\\iou.png', use_column_width=True)
+st.header(":+1: Ce qui a été fait")
+
+st.header(":-1: Ce qui n'a pas été fait (mais que ça aurait été cool :zany_face:)")
+
+st.header("Et concrètement, ça donne quoi ?")
+
 image_folder = os.path.join(os.path.dirname(os.getcwd()), 'mai23_cds_segmentation_nuages\images')
 image_list = [f for f in os.listdir(image_folder) if f.endswith('.jpg')]
 

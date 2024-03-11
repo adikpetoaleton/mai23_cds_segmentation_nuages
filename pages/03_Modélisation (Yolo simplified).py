@@ -24,6 +24,8 @@ import matplotlib.gridspec as gridspec
 from utility_for_modeling import *
 import io
 
+st.set_page_config(page_title="Cloud Yolo", page_icon=":four:", layout='centered')
+
 st.sidebar.title('CloudIAtlas Project')
 # Chargez l'image
 image = 'utils\cloudiatlas.png'
@@ -42,7 +44,7 @@ st.sidebar.markdown("***Alban*** ")
 
 tf.keras.backend.clear_session()
 
-st.set_page_config(page_title="Cloud Yolo", page_icon=":four:", layout='centered')
+
 
 #########################################
 # Initialisation des variables globales #
