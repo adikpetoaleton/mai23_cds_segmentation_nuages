@@ -132,6 +132,12 @@ st.write("<br><p style='text-align: justify;'>:x: Autres modèles : Double U-Net
 st.header("Et concrètement, ça donne quoi ?")
 
 st.write("<br><p style='text-align: justify;'>Le modèle final qui vous est proposé ci-dessous est l'application du modèle étalon surchargé du modèle des bandes noires", unsafe_allow_html=True)
+st.write("<br><p style='text-align: justify;'>Cette combinaison avec un MeanIoU de 54% et quasi 100% de bande noire conduit à un meanIoU combiné de 54 / (100 - 10) soit :", unsafe_allow_html=True)
+st.markdown("**60%**")
+
+st.sidebar.divider()
+
+st.write("<br><p style='text-align: justify;'>Chose promise, chose due, on teste !!!", unsafe_allow_html=True)
 
 image_folder = os.path.join(os.path.dirname(os.getcwd()), 'mai23_cds_segmentation_nuages\images')
 image_list = [f for f in os.listdir(image_folder) if f.endswith('.jpg')]
