@@ -1,12 +1,14 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title='hello',
+    page_title='CloudIAtlas',
     layout='centered',
     page_icon=":one:"
 )
 
 #def main():
+
+st.sidebar.title('Navigation')
 
 st.title(":one: Segmentation de régions nuageuses")
 st.write("<br><p style='text-align: justify;'>Depuis de nombreuses années, le changement climatique est au cœur des préoccupations\
