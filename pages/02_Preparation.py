@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 import seaborn as sns
 import random
 import io
-from utils import *
+from utility_for_exploration.py import *
 
 st.set_page_config(page_title="Cloud manipulation", page_icon=":three:", layout='centered')
 

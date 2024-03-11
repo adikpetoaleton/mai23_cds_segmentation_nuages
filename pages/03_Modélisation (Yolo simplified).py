@@ -53,8 +53,8 @@ tf.keras.backend.clear_session()
 RESIZED_PATH = 'images/resized/'
 IMAGES_PATH = 'images/'
 RESIZE_VALUE = (256, 256)
-INITIAL_DATASET = 'clouds_0_small.csv'
-ENRICHED_DATASET = 'clouds_1_small.csv'
+INITIAL_DATASET = 'clouds_0.csv'
+ENRICHED_DATASET = 'clouds_2.csv'
 ORIGINAL_IMAGE_WIDTH = 2100
 ORIGINAL_IMAGE_HEIGHT = 1400
 OUTPUT_SHAPE = (8, 8)
