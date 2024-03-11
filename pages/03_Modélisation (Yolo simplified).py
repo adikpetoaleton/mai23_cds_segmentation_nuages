@@ -22,7 +22,6 @@ import random
 import matplotlib.gridspec as gridspec
 
 from utility_for_modeling import *
-#from utility_for_sharing import *
 
 import io
 
@@ -71,42 +70,42 @@ MODEL_FILE = 'model.h5'
 NB_IMAGES_VISU = 4
 NB_COLUMN_VISU = 2
 
-# @st.cache_data
-# def load_initial_data():
-#     data = pd.read_csv(INITIAL_DATASET)
-#     return data
+@st.cache_data
+def load_initial_data():
+    data = pd.read_csv(INITIAL_DATASET)
+    return data
 
-# @st.cache_data
-# def load_enriched_data():
-#     data = pd.read_csv(ENRICHED_DATASET)
-#     return data
+@st.cache_data
+def load_enriched_data():
+    data = pd.read_csv(ENRICHED_DATASET)
+    return data
 
-# @st.cache_data
-# def load_hist_data():
-#     data = pd.read_csv(HIST_FILE)
-#     return data
+@st.cache_data
+def load_hist_data():
+    data = pd.read_csv(HIST_FILE)
+    return data
 
-# ###########################################
-# # Initialisation des variables de session #
-# ###########################################
+###########################################
+# Initialisation des variables de session #
+###########################################
 
-# if 'dataframe_11' not in st.session_state:
-#     st.session_state.dataframe_11 = None
-#     dataframe_11 = None
-# else:
-#     dataframe_11 = st.session_state.dataframe_11
+if 'dataframe_11' not in st.session_state:
+    st.session_state.dataframe_11 = None
+    dataframe_11 = None
+else:
+    dataframe_11 = st.session_state.dataframe_11
 
-# if 'dataframe_21' not in st.session_state:
-#     st.session_state.dataframe_21 = None
-#     dataframe_21 = None
-# else:
-#     dataframe_21 = st.session_state.dataframe_21
+if 'dataframe_21' not in st.session_state:
+    st.session_state.dataframe_21 = None
+    dataframe_21 = None
+else:
+    dataframe_21 = st.session_state.dataframe_21
 
-# if 'dataframe_31' not in st.session_state:
-#     st.session_state.dataframe_31 = None
-#     dataframe_31 = None
-# else:
-#     dataframe_31 = st.session_state.dataframe_31
+if 'dataframe_31' not in st.session_state:
+    st.session_state.dataframe_31 = None
+    dataframe_31 = None
+else:
+    dataframe_31 = st.session_state.dataframe_31
 
 if 'isCharger3' not in st.session_state:
     st.session_state.isCharger3 = None

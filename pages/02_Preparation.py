@@ -7,7 +7,6 @@ import seaborn as sns
 import random
 import io
 from utility_for_exploration import *
-#from utility_for_sharing import *
 
 st.set_page_config(page_title="Cloud manipulation", page_icon=":three:", layout='centered')
 
@@ -27,20 +26,20 @@ st.set_page_config(page_title="Cloud manipulation", page_icon=":three:", layout=
 # st.sidebar.markdown("***Aziz***")
 # st.sidebar.markdown("***Alban*** ")
 
-# @st.cache_data
-# def load_cleaned_data():
-#     data = pd.read_csv('clouds_1.csv')
-#     return data
+@st.cache_data
+def load_cleaned_data():
+    data = pd.read_csv('clouds_1.csv')
+    return data
 
-# ###########################################
-# # Initialisation des variables de session #
-# ###########################################
+###########################################
+# Initialisation des variables de session #
+###########################################
 
-# if 'dataframe_4' not in st.session_state:
-#     st.session_state.dataframe_4 = None
-#     dataframe_4 = None
-# else:
-#     dataframe_4 = st.session_state.dataframe_4
+if 'dataframe_4' not in st.session_state:
+    st.session_state.dataframe_4 = None
+    dataframe_4 = None
+else:
+    dataframe_4 = st.session_state.dataframe_4
 
 st.title(":three: Préparation des données en vue de la segmentation")
 display_info("Cette phase consiste à retirer les abérrations du jeu de données en vue de la segmentation des images.")
