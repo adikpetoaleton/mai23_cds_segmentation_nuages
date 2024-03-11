@@ -8,7 +8,7 @@ import random
 import io
 from utils import *
 
-st.set_page_config(layout='centered')
+st.set_page_config(page_title="Cloud manipulation", page_icon=":three:", layout='centered')
 
 @st.cache_data
 def load_cleaned_data():
@@ -25,7 +25,7 @@ if 'dataframe_4' not in st.session_state:
 else:
     dataframe_4 = st.session_state.dataframe_4
 
-st.title("Préparation des données en vue de la segmentation")
+st.title(":three: Préparation des données en vue de la segmentation")
 display_info("Cette phase consiste à retirer les abérrations du jeu de données en vue de la segmentation des images.")
 
 ####################################

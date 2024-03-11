@@ -27,7 +27,7 @@ import io
 
 tf.keras.backend.clear_session()
 
-st.set_page_config(layout='centered')
+st.set_page_config(page_title="Cloud Yolo", page_icon=":four:", layout='centered')
 
 #########################################
 # Initialisation des variables globales #
@@ -95,7 +95,7 @@ if 'isCharger3' not in st.session_state:
 else:
     isCharger3 = st.session_state.isCharger3
 
-st.title("Exploration et visualisation des données")
+st.title(":four: Exploration et visualisation des données")
 display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
 
 #########################################

@@ -5,6 +5,9 @@ import os
 from utils import *
 from utils_unet import load_model_stripe, load_model_unet, predict_and_display
 
+st.set_page_config(page_title="Cloud-Net", page_icon=":five:")
+
+
 @st.cache_resource()
 def load_model_unet_cached():
     return load_model_unet()
@@ -16,7 +19,7 @@ def load_model_stripe_cached():
 model_unet = load_model_unet_cached()
 model_stripe = load_model_stripe_cached()
 
-st.title("Modélisation avec U-Net")
+st.title(":five: Modélisation avec U-Net")
 display_info("Espace de test de l'architecture U-Net pour la segmentation sémantique des régions nuageuses")
 
 image_folder = os.path.join(os.path.dirname(os.getcwd()), 'mai23_cds_segmentation_nuages\images')
