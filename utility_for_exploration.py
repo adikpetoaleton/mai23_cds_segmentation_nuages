@@ -145,6 +145,7 @@ def markDuplicate(data, group_field, count_field):
 def display_info_list_items(items, color='Black'):
     st.write("- " + "\n- ".join(items))
 
+@st.cache_data
 def displayMask(imageid, ax, masks, w, h, image_path, hide_axis=False, show_mask=False):
 
     cmap = 'viridis'
