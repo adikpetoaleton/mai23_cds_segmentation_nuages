@@ -8,6 +8,8 @@ import random
 import io
 from utility_for_exploration import *
 
+GRAPHS_PATH = 'images/graphs/'
+
 st.set_page_config(page_title="Head in the sky", page_icon=":two:", layout='centered')
 
 # st.sidebar.title('CloudIAtlas Project')
@@ -218,10 +220,14 @@ if isCharger2:
 
     # Stats n°3
     st.markdown("##### Distribution de l'étendu des nuages par classe de nuage")
+    
+    # debug
+    st.image(GRAPHS_PATH + 'graph_1.png')
+    # debug
 
-    g = sns.FacetGrid(dataframe_2, col='Label', height=4)
-    g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
-    st.pyplot(plt)
+    # g = sns.FacetGrid(dataframe_2, col='Label', height=4)
+    # g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
+    # st.pyplot(plt)
 
     display_info("Commentaires ici...")
 
