@@ -7,7 +7,7 @@ import seaborn as sns
 import random
 import io
 from utility_for_exploration import *
-from utility_for_sharing import *
+#from utility_for_sharing import *
 
 st.set_page_config(page_title="Cloud manipulation", page_icon=":three:", layout='centered')
 
