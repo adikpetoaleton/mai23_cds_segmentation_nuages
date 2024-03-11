@@ -193,70 +193,73 @@ if isCharger2:
         col_b11, col_b12 = st.columns([1, 2], gap='small')
         
         with col_b11:
-            st.dataframe(dist1)
+            st.image(GRAPHS_PATH + 'graph_3.png')
+            #st.dataframe(dist1)
 
         with col_b12:
-            fig2, ax2 = plt.subplots()
-            ax2.pie(
-                x = dist1['proportion'], 
-                labels = dist1['Ratio'],
-                autopct = lambda x: str(round(x, 2)) + '%',
-                pctdistance = 0.7, 
-                labeldistance = 1.1,
-                shadow = False,
-                textprops = {'fontsize': 8}
-            )
-            st.pyplot(fig2)
+            st.image(GRAPHS_PATH + 'graph_5.png')
+            # fig2, ax2 = plt.subplots()
+            # ax2.pie(
+            #     x = dist1['proportion'], 
+            #     labels = dist1['Ratio'],
+            #     autopct = lambda x: str(round(x, 2)) + '%',
+            #     pctdistance = 0.7, 
+            #     labeldistance = 1.1,
+            #     shadow = False,
+            #     textprops = {'fontsize': 8}
+            # )
+            # st.pyplot(fig2)
 
     with tab_b2:
         col_b21, col_b22 = st.columns([1, 2], gap='small')
         with col_b21:
-            st.dataframe(dist2)
+            st.image(GRAPHS_PATH + 'graph_2.png')
+            #st.dataframe(dist2)
         with col_b22:
-            fig1, ax1 = plt.subplots()
-            sns.set_theme()
-            sns.barplot(x='Occurence', y='count', data=dist2)
-            st.pyplot(fig1)
+            st.image(GRAPHS_PATH + 'graph_4.png')
+            # fig1, ax1 = plt.subplots()
+            # sns.set_theme()
+            # sns.barplot(x='Occurence', y='count', data=dist2)
+            # st.pyplot(fig1)
 
     # Stats n°3
     st.markdown("##### Distribution de l'étendu des nuages par classe de nuage")
     
-    # debug
     st.image(GRAPHS_PATH + 'graph_1.png')
-    # debug
 
     # g = sns.FacetGrid(dataframe_2, col='Label', height=4)
     # g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
     # st.pyplot(plt)
-
-    display_info("Commentaires ici...")
 
     # Stats n°4
     st.markdown("##### Quelques distributions...")
 
     exp1 = st.expander("Distribution du taux de couverture des nuages (par rapport à l'image entière) par classe de nuage", expanded=True)
     with exp1:
-        sns.set(style='whitegrid')
-        fig3, ax3 = plt.subplots(figsize=(8, 6))
-        sns.boxplot(x='Label', y='CloudRatio', data=dataframe_2, width=0.5)
-        sns.despine(left=True)
-        st.pyplot(fig3)
+        st.image(GRAPHS_PATH + 'graph_10.png')
+        # sns.set(style='whitegrid')
+        # fig3, ax3 = plt.subplots(figsize=(8, 6))
+        # sns.boxplot(x='Label', y='CloudRatio', data=dataframe_2, width=0.5)
+        # sns.despine(left=True)
+        # st.pyplot(fig3)
 
     exp2 = st.expander("Distribution de la moyenne des niveaux de pixel d'une zone nuageuse par classe de nuage")
     with exp2:
-        sns.set(style='whitegrid')
-        fig4, ax4 = plt.subplots(figsize=(8, 6))
-        sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_2, width=0.5)
-        sns.despine(left=True)
-        st.pyplot(fig4)
+        st.image(GRAPHS_PATH + 'graph_11.png')
+        # sns.set(style='whitegrid')
+        # fig4, ax4 = plt.subplots(figsize=(8, 6))
+        # sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_2, width=0.5)
+        # sns.despine(left=True)
+        # st.pyplot(fig4)
 
     exp3 = st.expander("Distribution de l'écart-type des niveaux de pixel d'une zone nuageuse par classe de nuage")
     with exp3:
-        sns.set(style='whitegrid')
-        fig5, ax5 = plt.subplots(figsize=(8, 6))
-        sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
-        sns.despine(left=True)
-        st.pyplot(fig5)
+        st.image(GRAPHS_PATH + 'graph_12.png')
+        # sns.set(style='whitegrid')
+        # fig5, ax5 = plt.subplots(figsize=(8, 6))
+        # sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
+        # sns.despine(left=True)
+        # st.pyplot(fig5)
     
     ############################
     # Visualisation des images #
