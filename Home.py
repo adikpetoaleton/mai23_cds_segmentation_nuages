@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 
 st.set_page_config(
     page_title='CloudIAtlas',
@@ -11,7 +12,7 @@ st.set_page_config(
 @st.cache
 def load_image(image_path):
     return Image.open(image_path)
-    
+
 teaser_image = load_image("Teaser_AnimationwLabels.gif")
 
 
