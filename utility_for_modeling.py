@@ -225,6 +225,7 @@ def show_bounding_box(im, bbox, class_pred, ax, normalised=True, color='r'):
 
     ax.text(x1 + delta_x, delta_y_resolved, class_pred, fontsize=10, ha='left', va='center', bbox=dict(boxstyle='square', alpha=0.8, facecolor='orange', edgecolor='none'))
     
+    ax.axis('off')
     # Afficher l'image
     ax.set_title(class_pred)
     ax.imshow(im)
