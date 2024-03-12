@@ -208,23 +208,23 @@ if isCharger3:
 # Séparation du jeu de données des données #
 ############################################
 
-if isCharger3:
+#if isCharger3:
 
-    # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
-    tmp = dataframe_21[dataframe_21['EncodedPixels'] != -1]
-    value_counts = tmp['FileName'].value_counts()
-    mono_class_items = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
-    df_mono_class_unseen = tmp[tmp['FileName'].isin(mono_class_items)]
-    df_mono_class_unseen.reset_index(drop=True, inplace=True)
+    # # On retire 100 images mono-class du jeu d'entraînement et de test que le système ne voit pas durant l'entraînement
+    # tmp = dataframe_21[dataframe_21['EncodedPixels'] != -1]
+    # value_counts = tmp['FileName'].value_counts()
+    # mono_class_items = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
+    # df_mono_class_unseen = tmp[tmp['FileName'].isin(mono_class_items)]
+    # df_mono_class_unseen.reset_index(drop=True, inplace=True)
 
-    df_train_test = dataframe_21[~dataframe_21['FileName'].isin(mono_class_items)]
+    # df_train_test = dataframe_21[~dataframe_21['FileName'].isin(mono_class_items)]
 
-    # Création d'une liste de 100 images mono-class vu par le système pendant l'apprentissage
-    tmp = df_train_test[df_train_test['EncodedPixels'] != -1]
-    value_counts = tmp['FileName'].value_counts()
-    mono_class_items_seen = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
-    df_mono_class_seen = tmp[tmp['FileName'].isin(mono_class_items_seen)]
-    df_mono_class_seen.reset_index(drop=True, inplace=True)
+    # # Création d'une liste de 100 images mono-class vu par le système pendant l'apprentissage
+    # tmp = df_train_test[df_train_test['EncodedPixels'] != -1]
+    # value_counts = tmp['FileName'].value_counts()
+    # mono_class_items_seen = tmp[tmp['FileName'].map(value_counts) == 1].head(100).FileName.tolist()
+    # df_mono_class_seen = tmp[tmp['FileName'].isin(mono_class_items_seen)]
+    # df_mono_class_seen.reset_index(drop=True, inplace=True)
 
 ########################
 # Définition du modèle #
@@ -232,56 +232,58 @@ if isCharger3:
 
 st.markdown("### 3. Définition du modèle")
 
+# if isCharger3:
+
+#     # Backbone
+#     efficientNet = EfficientNetB0(include_top=False, input_shape=EFFICIENT_NET_INPUT_SHAPE, weights="imagenet")
+
+#     # Freeze the blackbone
+#     for layer in efficientNet.layers:
+#         layer.trainable = False
+
+#     model = Sequential()
+
+#     # Feature extraction
+#     model.add(efficientNet) 
+#     model.add(Reshape([-1, 1280]))
+
+#     # Regression
+#     model.add(Dense(1024, activation='relu'))
+#     model.add(Dropout(0.2))
+#     model.add(Dense(512, activation='relu'))
+#     model.add(Dropout(0.2))
+#     model.add(Dense(256, activation='relu'))
+#     model.add(Dropout(0.2))
+#     model.add(Dense(5 + NB_CLASSES))
+
+#     model.summary(print_fn=lambda x: st.text(x))
 if isCharger3:
-
-    # Backbone
-    efficientNet = EfficientNetB0(include_top=False, input_shape=EFFICIENT_NET_INPUT_SHAPE, weights="imagenet")
-
-    # Freeze the blackbone
-    for layer in efficientNet.layers:
-        layer.trainable = False
-
-    model = Sequential()
-
-    # Feature extraction
-    model.add(efficientNet) 
-    model.add(Reshape([-1, 1280]))
-
-    # Regression
-    model.add(Dense(1024, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(512, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(256, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(5 + NB_CLASSES))
-
-    model.summary(print_fn=lambda x: st.text(x))
+    st.image(GRAPHS_PATH + 'graph_16.png')
 
 ###########################################
 # Chargement de la courbe d'apprentissage #
 ###########################################
 
     st.markdown("### 4. Affichage de la courbe d'apprentissage")
+    st.image(GRAPHS_PATH + 'graph_17.png')
+    # if st.session_state.dataframe_31 is None:
+    #     st.session_state.dataframe_31 = load_hist_data()
+    #     dataframe_31 = st.session_state.dataframe_31
 
-    if st.session_state.dataframe_31 is None:
-        st.session_state.dataframe_31 = load_hist_data()
-        dataframe_31 = st.session_state.dataframe_31
+    # fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
 
-    fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
+    # axes[0].set_title('Loss')
+    # axes[0].plot(dataframe_31['loss'])
+    # axes[0].plot(dataframe_31['val_loss'])
+    # axes[0].legend(['Train', 'Test'], loc='upper left')
 
-    axes[0].set_title('Loss')
-    axes[0].plot(dataframe_31['loss'])
-    axes[0].plot(dataframe_31['val_loss'])
-    axes[0].legend(['Train', 'Test'], loc='upper left')
+    # axes[1].set_title('Mean IOU')
+    # axes[1].plot(dataframe_31['mean_iou'])
+    # axes[1].plot(dataframe_31['val_mean_iou'])
+    # axes[1].legend(['Train', 'Test'], loc='upper left')
 
-    axes[1].set_title('Mean IOU')
-    axes[1].plot(dataframe_31['mean_iou'])
-    axes[1].plot(dataframe_31['val_mean_iou'])
-    axes[1].legend(['Train', 'Test'], loc='upper left')
-
-    plt.tight_layout()
-    st.pyplot(fig3)
+    # plt.tight_layout()
+    # st.pyplot(fig3)
 
     st.info(
         "Pas top du tout :/", icon="ℹ️"
