@@ -113,7 +113,7 @@ if 'isCharger3' not in st.session_state:
 else:
     isCharger3 = st.session_state.isCharger3
 
-st.title(":four: Exploration et visualisation des données")
+st.title(":two: Exploration et visualisation des données")
 display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
 
 #########################################

@@ -60,7 +60,7 @@ if 'isCharger2' not in st.session_state:
 else:
     isCharger2 = st.session_state.isCharger2
 
-st.title(":two: Exploration et visualisation des données")
+st.title(":one: Exploration et visualisation des données")
 display_info("Cette phase consiste à explorer et visualiser le jeu de données de départ en conjonction avec les images brutes (non réduites).")
 
 #########################################

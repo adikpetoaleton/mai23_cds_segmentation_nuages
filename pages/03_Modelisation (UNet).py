@@ -35,7 +35,7 @@ def load_model_stripe_cached():
 model_unet = load_model_unet_cached()
 model_stripe = load_model_stripe_cached()
 
-st.title(":five: Modélisation avec U-Net")
+st.title(":three: Modélisation avec U-Net")
 display_info("Espace de test de l'architecture U-Net pour la segmentation sémantique des régions nuageuses")
 
 st.write("<br><p style='text-align: justify;'>Le parcours décrit ci-dessous aura pour objectif de \

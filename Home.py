@@ -34,7 +34,7 @@ teaser_image = load_image("Teaser_AnimationwLabels.gif")
 # st.sidebar.markdown("***Aziz***")
 # st.sidebar.markdown("***Alban*** ")
 
-st.title(":one: ClouIAtlas : Segmentation de régions nuageuses")
+st.title("ClouIAtlas : Segmentation de régions nuageuses")
 st.write("<br><p style='text-align: justify;'>Depuis de nombreuses années, le changement climatique est au cœur des préoccupations\
 des scientifiques et au premier plan des décisions politiques importantes. Les scientifiques,\
 comme ceux de l'Institut Max Planck de météorologie, mènent de nouvelles recherches sur\
