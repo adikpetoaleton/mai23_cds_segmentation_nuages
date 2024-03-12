@@ -236,7 +236,7 @@ if isCharger2:
 
     exp1 = st.expander("Distribution du taux de couverture des nuages (par rapport à l'image entière) par classe de nuage", expanded=True)
     with exp1:
-        st.image(GRAPHS_PATH + 'graph_10.png')
+        st.image(GRAPHS_PATH + 'graph_10.png', width=300)
         # sns.set(style='whitegrid')
         # fig3, ax3 = plt.subplots(figsize=(8, 6))
         # sns.boxplot(x='Label', y='CloudRatio', data=dataframe_2, width=0.5)
@@ -245,7 +245,7 @@ if isCharger2:
 
     exp2 = st.expander("Distribution de la moyenne des niveaux de pixel d'une zone nuageuse par classe de nuage")
     with exp2:
-        st.image(GRAPHS_PATH + 'graph_11.png')
+        st.image(GRAPHS_PATH + 'graph_11.png', width=300)
         # sns.set(style='whitegrid')
         # fig4, ax4 = plt.subplots(figsize=(8, 6))
         # sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_2, width=0.5)
@@ -254,7 +254,7 @@ if isCharger2:
 
     exp3 = st.expander("Distribution de l'écart-type des niveaux de pixel d'une zone nuageuse par classe de nuage")
     with exp3:
-        st.image(GRAPHS_PATH + 'graph_12.png')
+        st.image(GRAPHS_PATH + 'graph_12.png', width=300)
         # sns.set(style='whitegrid')
         # fig5, ax5 = plt.subplots(figsize=(8, 6))
         # sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
