@@ -8,6 +8,7 @@ import matplotlib.lines as lines
 
 OUTPUT_SHAPE = (8, 8)
 CLASSES = ['Fish', 'Flower', 'Gravel', 'Sugar']
+MODEL_FILE = 'model.h5'
 
 def display_info(txt, color='Black'):
     st.write("<span style='color:" + color + ";'>_" + txt + "_</span>", unsafe_allow_html=True)
