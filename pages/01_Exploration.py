@@ -260,7 +260,15 @@ if isCharger2:
         # sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_2, width=0.5)
         # sns.despine(left=True)
         # st.pyplot(fig5)
-    
+
+    # Stats n°5
+    st.markdown("##### Dénombrement des observations masquées de façon significative par une barre noire (plus de 20% de l'image)")
+    # df_hidden = df[df['RatioHiddenArea'] > 0.2][['FileId', 'CountPixelsHiddenArea', 'RatioHiddenArea']].groupby('FileId').agg({'CountPixelsHiddenArea': lambda x: x.mode().iloc[0], 'RatioHiddenArea': lambda x: x.mode().iloc[0]}).reset_index()
+    # df_hidden = df_hidden.sort_values(by='RatioHiddenArea', ascending=False)
+    # df_hidden
+
+    st.image(GRAPHS_PATH + 'graph_14.png')
+
     ############################
     # Visualisation des images #
     ############################
@@ -272,30 +280,44 @@ if isCharger2:
 
         with st.spinner("Veuillez patienter"):
 
-            exp1 = st.expander("Visualiser des images multi-classes", expanded=True)
+            exp1 = st.expander("Visualiser des images présentant une zone cachée significative")
             with exp1:
-                ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+                st.image(GRAPHS_PATH + 'graph_9.png')
+                # ImageIds = ['f32724b_0', '17fe76e_0', '06e5dd6_0']
+                # showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
 
-            exp2 = st.expander("Visualiser des images decrites par des segments compactes")
+            exp2 = st.expander("Visualiser des images multi-classes", expanded=True)
             with exp2:
-                ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+                st.image(GRAPHS_PATH + 'graph_6.png')
+                # ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
+                # showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
-            exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
+            exp3 = st.expander("Visualiser des images decrites par des segments compacts")
             with exp3:
-                ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+                st.image(GRAPHS_PATH + 'graph_7.png')
+                # ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
+                # showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
 
-            exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
+            exp4 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
             with exp4:
-                ImageIds = ['f32724b_0', '17fe76e_0', '06e5dd6_0']
-                showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
+                st.image(GRAPHS_PATH + 'graph_8.png')
+                # ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
+                # showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
             
-            # exp1 = st.expander("Visualiser des images multi-classes")
-            # with exp1:
-            #     ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 9)
-            #     showImages(ImageIds, 3, 3, dataframe_2, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
+            exp5 = st.expander("Visualiser des images avec Bounding box")
+            with exp5:
+                st.image(GRAPHS_PATH + 'graph_15.png')
+                # ImageIds = random.sample(dataframe_2['ImageId'].unique().tolist(), 3)
+                # showImages(ImageIds, 1, 3, dataframe_2, 2100, 1400, 'images/', hide_axis=True, show_mask=True)
+
+                # fig7, axes = plt.subplots(1, 3, figsize=(15, 20), layout='constrained')
+                # for axe, img_id in zip(axes.flat, ImageIds):
+                #     x = dataframe_2[dataframe_2['ImageId'] == img_id].X
+                #     y = dataframe_2[dataframe_2['ImageId'] == img_id].Y
+                #     w = dataframe_2[dataframe_2['ImageId'] == img_id].W
+                #     h = dataframe_2[dataframe_2['ImageId'] == img_id].H
+                #     displayBoundingBox(img_id, axe, x, y, w, h)
+                # st.pyplot(fig7)
 
 
 
