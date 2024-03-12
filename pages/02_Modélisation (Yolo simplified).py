@@ -236,7 +236,9 @@ if isCharger3:
 # Définition du modèle #
 ########################
 
-st.markdown("### 3. Définition du modèle")
+if isCharger3:
+    
+    st.markdown("### 3. Définition du modèle")
 
 # if isCharger3:
 
@@ -263,7 +265,7 @@ st.markdown("### 3. Définition du modèle")
 #     model.add(Dense(5 + NB_CLASSES))
 
 #     model.summary(print_fn=lambda x: st.text(x))
-if isCharger3:
+
     st.image(GRAPHS_PATH + 'graph_16.png')
 
 ###########################################
