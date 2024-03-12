@@ -88,8 +88,8 @@ def load_hist_data():
     return data
 
 @st.cache_resource()
-def load_model():
-    return tf.keras.models.load_model(MODEL_FILE, custom_objects={'global_loss': global_loss, 'mean_iou': mean_iou})
+def load_model_cached():
+    return load_model()
 
 ###########################################
 # Initialisation des variables de session #
@@ -305,7 +305,7 @@ if isCharger3:
 
     # Chargement du modèle depuis la sauvegrade model.h5
     if os.path.exists(MODEL_FILE):
-        model = load_model()
+        model = load_model_cached()
 
     if st.button('Prédire'):
         fName = '002be4f.jpg'

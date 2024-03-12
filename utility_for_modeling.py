@@ -299,3 +299,6 @@ def show_prediction(img, model, ax, threshold=0.6):
         show_bounding_box(img/255, bbox, plot_title, ax)
     
     return bboxes_pred
+
+def load_model():
+    return tf.keras.models.load_model(MODEL_FILE, custom_objects={'global_loss': global_loss, 'mean_iou': mean_iou})
