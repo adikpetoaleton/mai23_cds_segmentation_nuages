@@ -231,7 +231,6 @@ if isCharger3:
 ########################
 
 st.markdown("### 3. Définition du modèle")
-display_info("à compléter")
 
 if isCharger3:
 
@@ -285,7 +284,7 @@ if isCharger3:
     st.pyplot(fig3)
 
     st.info(
-        "à définir", icon="ℹ️"
+        "Pas top du tout :/", icon="ℹ️"
     )
 
 ##############
@@ -311,137 +310,4 @@ if isCharger3:
                     
         plt.tight_layout()
         st.pyplot(fig4)
-        
-        # Debug
-        result
-
-# if isCharger3:
-
-#     st.markdown("### 3. Exploration des données")
-
-#     class_per_image = dataframe_21.groupby('FileId').agg({'Class': 'count'}).rename({'Class':'Occurence'}, axis=1)
-#     dist1 = pd.DataFrame(dataframe_21['Class'].value_counts(normalize=True))
-#     dist1.reset_index(drop=False, inplace=True)
-#     dist1 = dist1.rename({'Class':'Ratio', 'index': 'Class'}, axis=1)
-#     dist1 = dist1.replace(to_replace=[0, 1, 2, 3], value=['Fish', 'Flower', 'Gravel', 'Sugar'])
-
-#     dist2 = pd.DataFrame(class_per_image['Occurence'].value_counts())
-#     dist2.reset_index(drop=False, inplace=True)
-#     dist2.sort_values(by='Occurence', ascending=True, inplace=True)
-#     dist2 = dist2.replace(to_replace=[1, 2, 3, 4], value=['1 Label', '2 Labels', '3 Labels', '4 Labels'])
-
-#     ##############################
-#     # Affichage des statistiques #
-#     ##############################
-
-#     # Stats n°1
-#     st.markdown("##### Résumé des statistiques (describe)")
-#     st.dataframe(dataframe_21.describe())
-
-#     # Stats n°2
-#     st.markdown("##### Autres statistiques")
-#     tab_b1, tab_b2 = st.tabs(['Distribution des classes de nuage', 'Distribution selon le nombre de classes qui les caractérisent'])
-    
-#     with tab_b1:
-
-#         col_b11, col_b12 = st.columns([1, 2], gap='small')
-        
-#         with col_b11:
-#             st.dataframe(dist1)
-
-#         with col_b12:
-#             fig2, ax2 = plt.subplots()
-#             ax2.pie(
-#                 x = dist1['proportion'], 
-#                 labels = dist1['Ratio'],
-#                 autopct = lambda x: str(round(x, 2)) + '%',
-#                 pctdistance = 0.7, 
-#                 labeldistance = 1.1,
-#                 shadow = False,
-#                 textprops = {'fontsize': 8}
-#             )
-#             st.pyplot(fig2)
-
-#     with tab_b2:
-#         col_b21, col_b22 = st.columns([1, 2], gap='small')
-#         with col_b21:
-#             st.dataframe(dist2)
-#         with col_b22:
-#             fig1, ax1 = plt.subplots()
-#             sns.set_theme()
-#             sns.barplot(x='Occurence', y='count', data=dist2)
-#             st.pyplot(fig1)
-
-#     # Stats n°3
-#     st.markdown("##### Distribution de l'étendu des nuages par classe de nuage")
-
-#     g = sns.FacetGrid(dataframe_21, col='Label', height=4)
-#     g.map_dataframe(sns.histplot, 'CloudRatio', kde=True, bins=15)
-#     st.pyplot(plt)
-
-#     display_info("Commentaires ici...")
-
-#     # Stats n°4
-#     st.markdown("##### Quelques distributions...")
-
-#     exp1 = st.expander("Distribution du taux de couverture des nuages (par rapport à l'image entière) par classe de nuage", expanded=True)
-#     with exp1:
-#         sns.set(style='whitegrid')
-#         fig3, ax3 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='CloudRatio', data=dataframe_21, width=0.5)
-#         sns.despine(left=True)
-#         st.pyplot(fig3)
-
-#     exp2 = st.expander("Distribution de la moyenne des niveaux de pixel d'une zone nuageuse par classe de nuage")
-#     with exp2:
-#         sns.set(style='whitegrid')
-#         fig4, ax4 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='MeanPixelsCloud', data=dataframe_21, width=0.5)
-#         sns.despine(left=True)
-#         st.pyplot(fig4)
-
-#     exp3 = st.expander("Distribution de l'écart-type des niveaux de pixel d'une zone nuageuse par classe de nuage")
-#     with exp3:
-#         sns.set(style='whitegrid')
-#         fig5, ax5 = plt.subplots(figsize=(8, 6))
-#         sns.boxplot(x='Label', y='StdPixelsCloud', data=dataframe_21, width=0.5)
-#         sns.despine(left=True)
-#         st.pyplot(fig5)
-    
-#     ############################
-#     # Visualisation des images #
-#     ############################
-
-#     st.markdown("### 4. Visualisation des images")
-#     IMG_PATH = 'images/'
-    
-#     if st.checkbox("Afficher", key='xxx'):
-
-#         with st.spinner("Veuillez patienter"):
-
-#             exp1 = st.expander("Visualiser des images multi-classes", expanded=True)
-#             with exp1:
-#                 ImageIds = ['002be4f_0', '002be4f_1', '002be4f_3']
-#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
-
-#             exp2 = st.expander("Visualiser des images decrites par des segments compactes")
-#             with exp2:
-#                 ImageIds = ['659c0e7_0', '2b335f2_1', '6906aa0_3']
-#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
-
-#             exp3 = st.expander("Visualiser des images mono-classe decrites par des segments disjoints")
-#             with exp3:
-#                 ImageIds = ['5717e63_0', '4a7b6e3_3', '37e8349_0']
-#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
-
-#             exp4 = st.expander("Visualiser des images présentant une zone cachée significative")
-#             with exp4:
-#                 ImageIds = ['f32724b_0', '17fe76e_0', '06e5dd6_0']
-#                 showImages(ImageIds, 1, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=False)
-            
-#             # exp1 = st.expander("Visualiser des images multi-classes")
-#             # with exp1:
-#             #     ImageIds = random.sample(dataframe_21['ImageId'].unique().tolist(), 9)
-#             #     showImages(ImageIds, 3, 3, dataframe_21, 2100, 1400, IMG_PATH, hide_axis=True, show_mask=True)
-
 
