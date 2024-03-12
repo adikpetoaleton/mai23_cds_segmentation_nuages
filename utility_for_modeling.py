@@ -15,6 +15,46 @@ def display_info(txt, color='Black'):
 def display_info_list_items(items, color='Black'):
     st.write("- " + "\n- ".join(items))
 
+def mean_iou(y_true, y_pred):
+
+    y_true = tf.cast(y_true, tf.float32)
+    
+    y_pred = tf.cast(y_pred, tf.float32)
+    y_pred = transform_netout(y_pred)
+
+    xmoy_true = y_true[..., 1:2]
+    ymoy_true = y_true[..., 2:3]
+    w_true = y_true[..., 3:4]
+    h_true = y_true[..., 4:5]
+    
+    xmoy_pred = y_pred[..., 1:2]
+    ymoy_pred = y_pred[..., 2:3]
+    w_pred = y_pred[..., 3:4]
+    h_pred = y_pred[..., 4:5]
+
+    x1_true = xmoy_true - w_true / 2
+    x2_true = xmoy_true + w_true / 2
+    y1_true = ymoy_true - h_true / 2
+    y2_true = ymoy_true + h_true / 2
+
+    x1_pred = xmoy_pred - w_pred / 2
+    x2_pred = xmoy_pred + w_pred / 2
+    y1_pred = ymoy_pred - h_pred / 2
+    y2_pred = ymoy_pred + h_pred / 2
+
+    x1 = tf.math.maximum(x1_true, x1_pred)
+    y1 = tf.math.maximum(y1_true, y1_pred)
+    x2 = tf.math.minimum(x2_true, x2_pred)
+    y2 = tf.math.minimum(y2_true, y2_pred)
+
+    intersection = tf.maximum(x2 - x1, 0) * tf.maximum(y2 - y1, 0)
+    area_true = w_true * h_true
+    area_pred = w_pred * h_pred
+
+    iou = intersection / (area_true + area_pred - intersection + 1e-6)
+  
+    return iou
+
 def class_loss(y_true, y_pred):
     
     y_true_conf = y_true[..., 0] # Vecteur de présence d'un objet
