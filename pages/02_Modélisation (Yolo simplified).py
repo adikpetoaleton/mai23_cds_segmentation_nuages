@@ -266,7 +266,7 @@ if isCharger3:
 
 #     model.summary(print_fn=lambda x: st.text(x))
 
-    st.image(GRAPHS_PATH + 'graph_16.png', width=300)
+    st.image(GRAPHS_PATH + 'graph_16.png', width=500)
 
 ###########################################
 # Chargement de la courbe d'apprentissage #
