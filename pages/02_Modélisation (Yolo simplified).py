@@ -25,6 +25,8 @@ from utility_for_modeling import *
 
 import io
 
+GRAPHS_PATH = 'images/graphs/'
+
 st.set_page_config(page_title="Cloud Yolo", page_icon=":four:", layout='centered')
 
 # st.sidebar.title('CloudIAtlas Project')
@@ -266,24 +268,24 @@ if isCharger3:
 
     st.markdown("### 4. Affichage de la courbe d'apprentissage")
     st.image(GRAPHS_PATH + 'graph_17.png')
-    # if st.session_state.dataframe_31 is None:
-    #     st.session_state.dataframe_31 = load_hist_data()
-    #     dataframe_31 = st.session_state.dataframe_31
+    if st.session_state.dataframe_31 is None:
+        st.session_state.dataframe_31 = load_hist_data()
+        dataframe_31 = st.session_state.dataframe_31
 
-    # fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
+    fig3, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=False)
 
-    # axes[0].set_title('Loss')
-    # axes[0].plot(dataframe_31['loss'])
-    # axes[0].plot(dataframe_31['val_loss'])
-    # axes[0].legend(['Train', 'Test'], loc='upper left')
+    axes[0].set_title('Loss')
+    axes[0].plot(dataframe_31['loss'])
+    axes[0].plot(dataframe_31['val_loss'])
+    axes[0].legend(['Train', 'Test'], loc='upper left')
 
-    # axes[1].set_title('Mean IOU')
-    # axes[1].plot(dataframe_31['mean_iou'])
-    # axes[1].plot(dataframe_31['val_mean_iou'])
-    # axes[1].legend(['Train', 'Test'], loc='upper left')
+    axes[1].set_title('Mean IOU')
+    axes[1].plot(dataframe_31['mean_iou'])
+    axes[1].plot(dataframe_31['val_mean_iou'])
+    axes[1].legend(['Train', 'Test'], loc='upper left')
 
-    # plt.tight_layout()
-    # st.pyplot(fig3)
+    plt.tight_layout()
+    st.pyplot(fig3)
 
     st.info(
         "Pas top du tout :/", icon="ℹ️"
