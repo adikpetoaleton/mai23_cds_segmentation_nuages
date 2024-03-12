@@ -87,7 +87,7 @@ def load_hist_data():
     data = pd.read_csv(HIST_FILE)
     return data
 
-@st.cache_data
+@st.cache_resource()
 def load_model():
     return tf.keras.models.load_model(MODEL_FILE, custom_objects={'global_loss': global_loss, 'mean_iou': mean_iou})
 
